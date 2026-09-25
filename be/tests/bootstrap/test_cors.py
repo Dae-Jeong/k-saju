@@ -4,7 +4,7 @@ from app.bootstrap.app import create_app
 from app.core.settings import Settings
 
 
-def test_default_cors_origin_is_allowed() -> None:
+def test_default_cors_origin_is_allowed(required_env: dict[str, str]) -> None:
     app = create_app(Settings())
     with TestClient(app) as client:
         response = client.get("/", headers={"Origin": "http://localhost:3000"})
@@ -12,7 +12,7 @@ def test_default_cors_origin_is_allowed() -> None:
     assert response.headers["access-control-allow-origin"] == "http://localhost:3000"
 
 
-def test_unlisted_cors_origin_is_not_allowed() -> None:
+def test_unlisted_cors_origin_is_not_allowed(required_env: dict[str, str]) -> None:
     app = create_app(Settings())
     with TestClient(app) as client:
         response = client.get("/", headers={"Origin": "http://evil.example"})
@@ -20,7 +20,7 @@ def test_unlisted_cors_origin_is_not_allowed() -> None:
     assert "access-control-allow-origin" not in response.headers
 
 
-def test_cors_origins_are_configurable() -> None:
+def test_cors_origins_are_configurable(required_env: dict[str, str]) -> None:
     app = create_app(Settings(cors_origins=["http://custom.example"]))
     with TestClient(app) as client:
         response = client.get("/", headers={"Origin": "http://custom.example"})

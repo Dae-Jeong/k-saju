@@ -13,12 +13,19 @@ def main() -> None:
     try:
         settings = Settings()
     except ValidationError as error:
-        # 환경값과 알 수 없는 키 이름은 출력하지 않습니다.
+        # 환경값 자체는 출력하지 않습니다 — 키 이름만 나열합니다.
+        keys: list[str] = []
         for detail in error.errors(include_input=False, include_context=False):
             field = detail["loc"][0] if detail["loc"] else "settings"
             if field not in Settings.model_fields:
                 field = "settings"
-            print(f"{field}: {detail['type']}", file=sys.stderr)
+            key = str(field).upper()
+            if key not in keys:
+                keys.append(key)
+        print(
+            f"Missing or invalid environment variables: {', '.join(keys)}",
+            file=sys.stderr,
+        )
         raise SystemExit(1) from None
 
     configure_logging(

@@ -59,6 +59,16 @@
 3000/8000은 사용자 실사용 표면이다. 파괴적 실험은 격리 포트에서 한다. 자세한
 DB/앱 격리 규약은 글로벌 agent wiki의 로컬 개발 환경 규약을 따른다.
 
+## 환경변수
+
+앱은 OS 환경변수만 읽는다 — `.env` 파일을 직접 읽지 않는다. 루트 `.env.example`이
+유일한 스펙(각 키 `# required`/`# optional` 주석)이고, `make env`로 로컬 `.env`
+(gitignored)를 만든다. `.env`는 Makefile이 `dev-be`/`dev-fe`/`migrate`/`test`
+실행 전에 프로세스 환경으로 export하고, compose는 `--env-file .env` +
+`${VAR:?...}` interpolation으로 읽는다. be `Settings()`(pydantic)와 fe
+`env-config.ts`(zod)가 시작 시 필수 키를 검증해 누락되면 exit 1한다. 상세 흐름은
+`docs/env.md` 참고.
+
 ## Make 타겟 (작업 기준)
 
 사람과 agent 모두 실행·검증을 아래 make 타겟으로 한다. 같은 일을 하는 임의 명령

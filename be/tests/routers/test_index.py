@@ -4,7 +4,7 @@ from app.bootstrap.app import create_app
 from app.core.settings import Settings
 
 
-def test_index_returns_success_envelope() -> None:
+def test_index_returns_success_envelope(required_env: dict[str, str]) -> None:
     app = create_app(Settings())
     with TestClient(app) as client:
         response = client.get("/")
@@ -12,7 +12,7 @@ def test_index_returns_success_envelope() -> None:
     assert response.json() == {"data": {"message": "Hello, API!"}}
 
 
-def test_unknown_route_returns_problem_details() -> None:
+def test_unknown_route_returns_problem_details(required_env: dict[str, str]) -> None:
     app = create_app(Settings())
     with TestClient(app) as client:
         response = client.get("/does-not-exist")

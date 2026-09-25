@@ -15,9 +15,7 @@ async def test_pgvector_extension_is_installed(
     try:
         async with engine.connect() as connection:
             result = await connection.execute(
-                text(
-                    "SELECT extversion FROM pg_extension WHERE extname = 'vector'"
-                )
+                text("SELECT extversion FROM pg_extension WHERE extname = 'vector'")
             )
             row = result.first()
     finally:

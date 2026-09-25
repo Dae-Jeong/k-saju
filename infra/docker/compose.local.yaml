@@ -1,15 +1,15 @@
-name: ${COMPOSE_PROJECT_NAME:-saju}
+name: ${COMPOSE_PROJECT_NAME:?COMPOSE_PROJECT_NAME is required}
 
 services:
   postgres:
     image: pgvector/pgvector:pg18
-    container_name: ${COMPOSE_PROJECT_NAME:-saju}-postgres
+    container_name: ${COMPOSE_PROJECT_NAME:?COMPOSE_PROJECT_NAME is required}-postgres
     environment:
-      POSTGRES_DB: ${DB_NAME:-saju}
-      POSTGRES_USER: ${DB_USERNAME:-app}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-app}
+      POSTGRES_DB: ${DB_NAME:?DB_NAME is required}
+      POSTGRES_USER: ${DB_USERNAME:?DB_USERNAME is required}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
     ports:
-      - "127.0.0.1:${DB_HOST_PORT:-5433}:5432"
+      - "127.0.0.1:${DB_HOST_PORT:?DB_HOST_PORT is required}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql
     healthcheck:
@@ -24,16 +24,16 @@ services:
       context: ./be
       args:
         PYTHON_VERSION: ${PYTHON_VERSION:-3.14.7}
-    container_name: ${COMPOSE_PROJECT_NAME:-saju}-api
+    container_name: ${COMPOSE_PROJECT_NAME:?COMPOSE_PROJECT_NAME is required}-api
     environment:
-      APP_ENVIRONMENT: ${APP_ENVIRONMENT:-local}
+      APP_ENVIRONMENT: ${APP_ENVIRONMENT:?APP_ENVIRONMENT is required}
       SERVER_HOST: 0.0.0.0
       SERVER_PORT: 8000
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_NAME: ${DB_NAME:-saju}
-      DB_USERNAME: ${DB_USERNAME:-app}
-      DB_PASSWORD: ${DB_PASSWORD:-app}
+      DB_NAME: ${DB_NAME:?DB_NAME is required}
+      DB_USERNAME: ${DB_USERNAME:?DB_USERNAME is required}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
       CORS_ORIGINS: ${CORS_ORIGINS:-["http://localhost:3000"]}
     ports:
       - "127.0.0.1:8000:8000"
@@ -46,8 +46,8 @@ services:
     build:
       context: ./fe
       args:
-        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8000}
-    container_name: ${COMPOSE_PROJECT_NAME:-saju}-web
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:?NEXT_PUBLIC_API_BASE_URL is required}
+    container_name: ${COMPOSE_PROJECT_NAME:?COMPOSE_PROJECT_NAME is required}-web
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:

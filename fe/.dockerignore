@@ -4,9 +4,10 @@ out
 build
 .git
 .husky
-.env*.local
-.env
-!.env.example
+# No fe/.env* files exist or should exist — NEXT_PUBLIC_* vars come in as
+# Docker build args (see ../Dockerfile), never a dotenv file. Excluded here
+# only as a safety net.
+.env*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

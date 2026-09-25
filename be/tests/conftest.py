@@ -8,6 +8,17 @@ from sqlalchemy.ext.asyncio import create_async_engine
 
 from app.core.settings import Settings
 
+# Settings에 기본값이 없는 필수 키들의 로컬 개발용 값. 실제 .env 파일이 아니라
+# monkeypatch로만 주입합니다 — 테스트는 개발자의 .env에 의존하지 않습니다.
+REQUIRED_ENV: dict[str, str] = {
+    "APP_ENVIRONMENT": "local",
+    "DB_HOST": "localhost",
+    "DB_PORT": "5433",
+    "DB_NAME": "saju",
+    "DB_USERNAME": "app",
+    "DB_PASSWORD": "app",
+}
+
 
 @pytest.fixture(autouse=True)
 def isolate_settings(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -19,7 +30,15 @@ def isolate_settings(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 @pytest.fixture
-def dev_database_settings() -> Settings:
+def required_env(monkeypatch: pytest.MonkeyPatch) -> dict[str, str]:
+    """필수 환경변수를 로컬 개발 기본값으로 채웁니다 (monkeypatch 경유)."""
+    for key, value in REQUIRED_ENV.items():
+        monkeypatch.setenv(key, value)
+    return dict(REQUIRED_ENV)
+
+
+@pytest.fixture
+def dev_database_settings(required_env: dict[str, str]) -> Settings:
     """로컬 개발 Postgres(saju-postgres, 5433)를 가리키는 Settings입니다.
 
     별도 테스트 DB는 두지 않습니다 — 이 컨테이너가 없거나(예: CI) 꺼져 있으면

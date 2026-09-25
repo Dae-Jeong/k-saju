@@ -40,9 +40,7 @@ flowchart LR
 ## Quick start
 
 ```sh
-cp .env.example .env
-cp be/.env.example be/.env
-cp fe/.env.example fe/.env
+make env         # create .env from .env.example (see docs/env.md)
 
 make db          # start postgres only (127.0.0.1:5433)
 make migrate     # apply backend migrations

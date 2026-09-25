@@ -1,10 +1,15 @@
-.PHONY: help db db-down dev-be dev-fe migrate up down lint test fmt \
+.PHONY: help env check-env db db-down dev-be dev-fe migrate up down lint test fmt \
 	lint-be lint-fe test-be test-fe fmt-be fmt-fe
 
-COMPOSE := docker compose -f infra/docker/compose.local.yaml --project-directory .
+COMPOSE := docker compose -f infra/docker/compose.local.yaml --project-directory . --env-file .env
+
+# Loads the root .env into the recipe's shell (process env only — the app
+# itself never reads .env files). See docs/env.md.
+LOAD_ENV = set -a; . ./.env; set +a;
 
 help:
 	@echo "Targets:"
+	@echo "  env       - create .env from .env.example if missing (never overwrites)"
 	@echo "  db        - start postgres (docker compose up -d --wait postgres)"
 	@echo "  db-down   - stop postgres (keeps the volume)"
 	@echo "  dev-be    - run the backend locally (uv run python -m app.run)"
@@ -16,25 +21,36 @@ help:
 	@echo "  test      - test be (pytest) and fe (none yet)"
 	@echo "  fmt       - format be (ruff format) and fe (prettier)"
 
-db:
+env:
+	@if [ -f .env ]; then \
+		echo ".env already exists, leaving it as is"; \
+	else \
+		cp .env.example .env; \
+		echo "Created .env from .env.example"; \
+	fi
+
+check-env:
+	@test -f .env || { echo "copy .env.example to .env"; exit 1; }
+
+db: check-env
 	$(COMPOSE) up -d --wait postgres
 
-db-down:
+db-down: check-env
 	$(COMPOSE) stop postgres
 
-dev-be:
-	cd be && uv run python -m app.run
+dev-be: check-env
+	$(LOAD_ENV) cd be && uv run python -m app.run
 
-dev-fe:
-	cd fe && pnpm dev
+dev-fe: check-env
+	$(LOAD_ENV) cd fe && pnpm dev
 
-migrate:
-	cd be && uv run alembic upgrade head
+migrate: check-env
+	$(LOAD_ENV) cd be && uv run alembic upgrade head
 
-up:
+up: check-env
 	$(COMPOSE) --profile app up -d --build --wait
 
-down:
+down: check-env
 	$(COMPOSE) --profile app rm -sf api web
 
 lint: lint-be lint-fe
@@ -47,10 +63,10 @@ lint-fe:
 
 test: test-be test-fe
 
-test-be:
-	cd be && uv run pytest -q
+test-be: check-env
+	$(LOAD_ENV) cd be && uv run pytest -q
 
-test-fe:
+test-fe: check-env
 	@echo "fe: no test suite yet (pnpm typecheck runs under 'make lint')"
 
 fmt: fmt-be fmt-fe

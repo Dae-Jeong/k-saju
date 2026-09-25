@@ -9,13 +9,13 @@ skeleton. Python version is pinned in
 
 ```sh
 uv sync
-cp .env.example .env
-uv run alembic upgrade head
-uv run python -m app.run
+make -C .. env   # creates the root .env from .env.example, if missing
+make -C .. migrate
+make -C .. dev-be
 ```
 
-Defaults to `127.0.0.1:8000`. Change `SERVER_PORT` in `.env` for an isolated
-run (see the machine's local dev conventions for reserved ports).
+Defaults to `127.0.0.1:8000`. Change `SERVER_PORT` in the root `.env` for an
+isolated run (see the machine's local dev conventions for reserved ports).
 
 - `GET /`: `{"data":{"message":"Hello, API!"}}`
 - `GET /health/live`: liveness, always 200
@@ -25,22 +25,26 @@ run (see the machine's local dev conventions for reserved ports).
 
 ## Environment
 
-`.env.example` is the shared template; `.env` is local-only and untracked.
-Process env vars > `.env` > code defaults, in that priority.
+The app reads only OS environment variables — it never loads a `.env` file
+itself (`Settings` has no `env_file`). The single spec is the root
+`../.env.example`; local values come from the root `.env` (gitignored),
+loaded into the process env by the root `Makefile`. See `../docs/env.md`.
 
 | Setting | Role |
 | --- | --- |
+| `APP_ENVIRONMENT` | Logged environment name — **required** |
+| `DB_HOST` / `DB_PORT` / `DB_NAME` / `DB_USERNAME` / `DB_PASSWORD` | PostgreSQL connection — **required**; combined into an async `postgresql+asyncpg://` URL |
 | `APP_NAME` | OpenAPI title / logs |
 | `SERVICE_VERSION` | OpenAPI version / logs |
-| `APP_ENVIRONMENT` | Logged environment name; default `local` |
 | `SERVER_HOST` / `SERVER_PORT` | Bind address |
 | `SHUTDOWN_TIMEOUT_SECONDS` | Graceful shutdown request drain budget |
 | `LOG_LEVEL` | App + Uvicorn log level (lowercase) |
-| `DB_HOST` / `DB_PORT` / `DB_NAME` / `DB_USERNAME` / `DB_PASSWORD` | PostgreSQL connection; combined into an async `postgresql+asyncpg://` URL |
 | `DB_POOL_SIZE` / `DB_POOL_MAX_OVERFLOW` / `DB_POOL_TIMEOUT_SECONDS` | SQLAlchemy async engine pool |
 
 Settings are validated once at startup (`app/core/settings.py`) and passed
-explicitly; invalid config exits without echoing raw input.
+explicitly. A missing or invalid required var prints
+`Missing or invalid environment variables: KEY, ...` to stderr and exits 1,
+without echoing raw input.
 
 ## Structure
 
@@ -83,7 +87,7 @@ instead of failing.
 
 ```sh
 docker build -t api .
-docker run --rm -p 8000:8000 --env-file .env api
+docker run --rm -p 8000:8000 --env-file ../.env api
 ```
 
 `scripts/start.sh` runs `alembic upgrade head` then starts the app; the
