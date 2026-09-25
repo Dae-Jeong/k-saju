@@ -16,16 +16,17 @@
 | --- | --- |
 | `be/` | FastAPI 백엔드. 상세는 `be/README.md`, `be/AGENTS.md`(있다면) |
 | `fe/` | Next.js 프론트엔드. 상세는 `fe/README.md`, `fe/AGENTS.md` |
-| `infra/terraform/` | 인프라 as code. 아직 비어 있음(후순위, 아래 참고) |
+| `infra/terraform/` | 배포 인프라 as code. 아직 비어 있음(후순위, 아래 참고) |
+| `infra/docker/compose.local.yaml` | 로컬 개발 전용 compose. 배포 인프라 아님 |
 | `docs/` | 저장소 문서 |
 | `tasks/` | 작업 기록 |
-| `compose.yaml`, `Makefile`, `.env.example` | 루트 오케스트레이션 |
+| `Makefile`, `.env.example` | 루트 오케스트레이션 |
 
 ## 스택
 
 - 백엔드: FastAPI + uv + SQLAlchemy(async) + Alembic + PostgreSQL(pgvector, RAG용)
 - 프론트엔드: Next.js 16 + pnpm + Tailwind + shadcn/radix + TanStack Query
-- DB: PostgreSQL (compose의 `postgres` 서비스, 컨테이너 `saju-postgres`)
+- DB: PostgreSQL (`infra/docker/compose.local.yaml`의 `postgres` 서비스, 컨테이너 `saju-postgres`)
 
 ## 참고 소스
 
@@ -49,7 +50,7 @@
 
 | 용도 | 포트 |
 | --- | --- |
-| PostgreSQL (compose `postgres`) | 5433 |
+| PostgreSQL (local compose `postgres`) | 5433 |
 | 메인 백엔드 | 8000 |
 | 메인 프론트엔드 | 3000 |
 | 격리 작업 백엔드 | 8001 이상 |
@@ -73,8 +74,9 @@ DB/앱 격리 규약은 글로벌 agent wiki의 로컬 개발 환경 규약을 �
 
 ## infra
 
-`infra/terraform/`은 아직 비어 있다. OCI(Oracle Cloud Infrastructure)를 배포 대상
-후보로 검토 중이며, 실제 구성은 후순위 작업이다.
+`infra/docker/compose.local.yaml`은 로컬 개발 전용이다 — 배포 인프라가 아니다.
+배포 인프라는 `infra/terraform/`이 소유하며, 아직 비어 있다. OCI(Oracle Cloud
+Infrastructure)를 배포 대상 후보로 검토 중이며, 실제 구성은 후순위 작업이다.
 
 ## 프론트엔드 세부 규칙
 

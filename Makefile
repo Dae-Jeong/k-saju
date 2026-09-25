@@ -1,6 +1,8 @@
 .PHONY: help db db-down dev-be dev-fe migrate up down lint test fmt \
 	lint-be lint-fe test-be test-fe fmt-be fmt-fe
 
+COMPOSE := docker compose -f infra/docker/compose.local.yaml --project-directory .
+
 help:
 	@echo "Targets:"
 	@echo "  db        - start postgres (docker compose up -d --wait postgres)"
@@ -15,10 +17,10 @@ help:
 	@echo "  fmt       - format be (ruff format) and fe (prettier)"
 
 db:
-	docker compose up -d --wait postgres
+	$(COMPOSE) up -d --wait postgres
 
 db-down:
-	docker compose stop postgres
+	$(COMPOSE) stop postgres
 
 dev-be:
 	cd be && uv run python -m app.run
@@ -30,10 +32,10 @@ migrate:
 	cd be && uv run alembic upgrade head
 
 up:
-	docker compose --profile app up -d --build --wait
+	$(COMPOSE) --profile app up -d --build --wait
 
 down:
-	docker compose --profile app rm -sf api web
+	$(COMPOSE) --profile app rm -sf api web
 
 lint: lint-be lint-fe
 
