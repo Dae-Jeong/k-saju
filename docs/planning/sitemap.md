@@ -32,7 +32,7 @@ flowchart LR
     class Screens,Legal,Handlers group
 ```
 
-페이지 사이의 이동 흐름은 [유저 저니](user-journey.md)를 본다.
+페이지 사이의 이동 흐름은 [유저 저니](user-journey.md), 화면 뼈대는 [와이어프레임](wireframes.html) ([이미지](images/wireframes.png))을 본다.
 
 ## 사용자 화면
 
