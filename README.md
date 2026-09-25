@@ -37,6 +37,13 @@ flowchart LR
 - 점선: 통합 확인 — `make up` 으로 api·web도 컨테이너(profile `app`). 같은 3000/8000 포트를 쓰므로 둘 중 하나만 띄운다.
 - `make down` 은 api·web만 내리고 postgres는 유지한다.
 
+## Deployment architecture (설계안)
+
+![Server architecture](docs/images/server-architecture.png)
+
+prod 단일 · fe는 Vercel · be(api·worker·migrate)는 관리형 컨테이너 · 관리형 PostgreSQL + pgvector · 서비스명·도메인·클라우드 미정.
+네트워크 규칙, 클라우드별 대응, 배포 흐름은 [`docs/infra-architecture.md`](docs/infra-architecture.md)를 본다.
+
 ## Environment variables
 
 ```mermaid
