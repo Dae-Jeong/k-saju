@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>랜딩</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#F6F1E7;font-family:"Noto Sans KR",sans-serif;color:#1F1D1A}
+a{color:#1F1D1A}a:hover{color:#2E6B5E}
+</style>
+</helmet>
+<div style="width: 390px; height: 2000px; background: #F6F1E7; display: flex; flex-direction: column">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 12px">
+    <span style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 18px; letter-spacing: 0.04em">SERVICE</span>
+    <div style="display: flex; gap: 14px; font-size: 13px; color: #6B645A"><span>한국어</span><a href="Login.dc.html" style="color: #1F1D1A; text-decoration: none; font-weight: 500">로그인</a></div>
+  </div>
+  <svg width="390" height="42" style="display: block">
+    <defs>
+      <pattern id="hwi" width="40" height="30" patternUnits="userSpaceOnUse"><rect width="40" height="30" fill="#2E6B5E"></rect><g id="sc"><circle cx="20" cy="30" r="20" fill="#2F4FA3"></circle><circle cx="20" cy="30" r="17" fill="#7E9BDB"></circle><circle cx="20" cy="30" r="15" fill="#FFFDF7"></circle><circle cx="20" cy="30" r="14" fill="#E4572E"></circle><circle cx="20" cy="30" r="11" fill="#F08A4B"></circle><circle cx="20" cy="30" r="9" fill="#FFFDF7"></circle><circle cx="20" cy="30" r="8" fill="#4BB39A"></circle><circle cx="20" cy="30" r="5.5" fill="#9AD8C4"></circle><circle cx="20" cy="30" r="3.5" fill="#F4B63A"></circle></g><use href="#sc" x="-20"></use><use href="#sc" x="20"></use></pattern>
+      <pattern id="dots" width="18" height="12" patternUnits="userSpaceOnUse"><rect width="18" height="12" fill="#2E6B5E"></rect><circle cx="9" cy="6" r="4.2" fill="#F2A38E"></circle><circle cx="9" cy="6" r="2.4" fill="#E4572E"></circle><circle cx="9" cy="6" r="0.9" fill="#F4B63A"></circle></pattern>
+    </defs>
+    <rect width="390" height="30" fill="url(#hwi)"></rect><rect y="30" width="390" height="12" fill="url(#dots)"></rect>
+  </svg>
+
+  <div style="padding: 36px 24px 28px; display: flex; flex-direction: column; gap: 14px">
+    <span style="font-size: 12px; letter-spacing: 0.16em; color: #6B645A">KOREAN SAJU · 사주</span>
+    <h1 style="margin: 0; font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 38px; line-height: 1.22">여덟 글자로<br>읽는 나</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #4A453F">태어난 순간의 네 기둥으로 타고난 성향과 흐름을 읽어요. 먼저 무료로 보고, 더 알고 싶을 때만 결제하세요.</p>
+    <a href="ReadingInput.dc.html" style="display: block; text-align: center; background: #1F1D1A; color: #F6F1E7; text-decoration: none; font-weight: 700; font-size: 16px; padding: 16px; border-radius: 12px; margin-top: 6px">무료로 내 사주 보기 →</a>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap">
+      <span style="font-size: 12px; padding: 4px 10px; border-radius: 14px; border: 1px solid #CFC4B1; color: #6B645A">가입 없이 무료</span>
+      <span style="font-size: 12px; padding: 4px 10px; border-radius: 14px; border: 1px solid #CFC4B1; color: #6B645A">7일 환불</span>
+      <span style="font-size: 12px; padding: 4px 10px; border-radius: 14px; border: 1px solid #CFC4B1; color: #6B645A">안전 결제</span>
+    </div>
+  </div>
+
+  <div style="margin: 0 24px; background: #FBF8F2; border: 1px solid #E3DACB; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; align-items: center; gap: 6px">
+    <span style="font-size: 11px; letter-spacing: 0.14em; color: #6B645A">예시 · 아키타입 카드</span>
+    <span style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 64px; line-height: 1; color: #2E6B5E">甲</span>
+    <span style="font-family: 'Noto Serif KR', serif; font-weight: 700; font-size: 18px">갑목 · 큰 나무</span>
+    <span style="font-size: 12px; color: #6B645A">곧게 자라 그늘을 만드는 사람</span>
+  </div>
+
+  <div style="padding: 40px 24px 0; display: flex; flex-direction: column; gap: 14px">
+    <h2 style="margin: 0; font-family: 'Noto Serif KR', serif; font-size: 22px">이렇게 진행돼요</h2>
+    <div style="display: flex; gap: 14px; align-items: flex-start"><span style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 20px; color: #B8893A">1</span><div><div style="font-weight: 700">정보 입력</div><div style="font-size: 13px; color: #6B645A">이름 · 생년월일 · 태어난 시각 · 출생 도시 · 성별</div></div></div>
+    <div style="display: flex; gap: 14px; align-items: flex-start"><span style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 20px; color: #B8893A">2</span><div><div style="font-weight: 700">무료 리포트</div><div style="font-size: 13px; color: #6B645A">아키타입 · 명식표 · 오행 균형 · 짧은 요약</div></div></div>
+    <div style="display: flex; gap: 14px; align-items: flex-start"><span style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 20px; color: #B8893A">3</span><div><div style="font-weight: 700">상세 리포트</div><div style="font-size: 13px; color: #6B645A">성격 · 연애 · 직업/재물 · 건강 · 대운 · 올해</div></div></div>
+  </div>
+
+  <div style="padding: 40px 24px 0; display: flex; flex-direction: column; gap: 12px">
+    <h2 style="margin: 0; font-family: 'Noto Serif KR', serif; font-size: 22px">사주란?</h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #4A453F">태어난 연·월·일·시의 네 기둥, 여덟 글자로 성향과 흐름을 읽는 한국의 전통 명리예요.</p>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <div style="background: #FBF8F2; border: 1px solid #E3DACB; border-radius: 12px; padding: 14px; text-align: center"><div style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 26px">12</div><div style="font-size: 12px; color: #6B645A">서양 별자리</div></div>
+      <div style="background: #FBF8F2; border: 1px solid #E3DACB; border-radius: 12px; padding: 14px; text-align: center"><div style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 26px; color: #2E6B5E">518,400</div><div style="font-size: 12px; color: #6B645A">사주 명식</div></div>
+    </div>
+  </div>
+
+  <div style="padding: 40px 24px 0; display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-family: 'Noto Serif KR', serif; font-size: 22px">가격</h2>
+    <div style="display: flex; justify-content: space-between; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #E3DACB"><span>무료 리포트</span><span style="font-weight: 700">$0</span></div>
+    <div style="display: flex; justify-content: space-between; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #E3DACB"><span>상세 리포트 (3크레딧)</span><span style="font-weight: 700">$2.97</span></div>
+    <a href="PricingSelect.dc.html" style="font-size: 14px; font-weight: 700; color: #2E6B5E">크레딧 묶음 보기 →</a>
+  </div>
+
+  <div style="padding: 40px 24px 0; display: flex; flex-direction: column">
+    <h2 style="margin: 0 0 8px; font-family: 'Noto Serif KR', serif; font-size: 22px">자주 묻는 질문</h2>
+    <div style="padding: 13px 0; border-bottom: 1px solid #E3DACB; display: flex; justify-content: space-between; font-size: 14px"><span>사주가 뭔가요?</span><span style="color: #6B645A">+</span></div>
+    <div style="padding: 13px 0; border-bottom: 1px solid #E3DACB; display: flex; justify-content: space-between; font-size: 14px"><span>태어난 시각을 모르면요?</span><span style="color: #6B645A">+</span></div>
+    <div style="padding: 13px 0; border-bottom: 1px solid #E3DACB; display: flex; justify-content: space-between; font-size: 14px"><span>앱마다 결과가 다른 이유는요?</span><span style="color: #6B645A">+</span></div>
+    <div style="padding: 13px 0; border-bottom: 1px solid #E3DACB; display: flex; justify-content: space-between; font-size: 14px"><span>환불되나요?</span><span style="color: #6B645A">+</span></div>
+    <div style="padding: 13px 0; border-bottom: 1px solid #E3DACB; display: flex; justify-content: space-between; font-size: 14px"><span>입력한 정보는 저장되나요?</span><span style="color: #6B645A">+</span></div>
+    <span style="font-size: 12px; color: #6B645A; padding-top: 8px">외 7문항</span>
+  </div>
+
+  <div style="padding: 36px 24px 32px">
+    <a href="ReadingInput.dc.html" style="display: block; text-align: center; background: #1F1D1A; color: #F6F1E7; text-decoration: none; font-weight: 700; font-size: 16px; padding: 16px; border-radius: 12px">무료로 시작하기 →</a>
+  </div>
+
+  <div style="margin-top: auto; background: #EFE8DA; padding: 20px 24px 28px; font-size: 11px; line-height: 1.8; color: #6B645A">
+    <div style="font-weight: 700; color: #1F1D1A">Service (가칭)</div>
+    <div>대표 홍길동 · 사업자등록번호 000-00-00000 · 통신판매업 제0000-서울OO-0000호</div>
+    <div>서울특별시 OO구 OO로 00 · hello@example.com · 개인정보 보호책임자 홍길동</div>
+    <div>호스팅 Vercel Inc. · 결제 해외 카드 · PayPal (Toss Payments)</div>
+    <div style="display: flex; gap: 12px; margin-top: 10px; color: #1F1D1A"><span>이용약관</span><span>개인정보처리방침</span><span>환불 정책</span><span>문의</span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

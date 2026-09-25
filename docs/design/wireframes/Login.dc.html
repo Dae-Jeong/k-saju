@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>로그인</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<style>body{margin:0;background:#F6F1E7;font-family:"Noto Sans KR",sans-serif;color:#1F1D1A}a{color:#1F1D1A}a:hover{color:#2E6B5E}</style>
+</helmet>
+<div style="width: 390px; height: 844px; background: #F6F1E7; display: flex; flex-direction: column">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 12px">
+    <a href="Main.dc.html" style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 18px; letter-spacing: 0.04em; text-decoration: none">SERVICE</a>
+    <span style="font-size: 13px; color: #6B645A">한국어</span>
+  </div>
+  <svg width="390" height="12" style="display: block"><defs><pattern id="dots" width="18" height="12" patternUnits="userSpaceOnUse"><rect width="18" height="12" fill="#2E6B5E"></rect><circle cx="9" cy="6" r="4.2" fill="#F2A38E"></circle><circle cx="9" cy="6" r="2.4" fill="#E4572E"></circle><circle cx="9" cy="6" r="0.9" fill="#F4B63A"></circle></pattern></defs><rect width="390" height="12" fill="url(#dots)"></rect></svg>
+  <div style="padding: 36px 24px; display: flex; flex-direction: column; gap: 12px">
+    <h1 style="margin: 0; font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 26px; line-height: 1.35">상세 리포트를 보려면<br>로그인하세요</h1>
+    <p style="margin: 0 0 10px; font-size: 14px; color: #6B645A">비밀번호 없이 3초면 끝나요</p>
+    <button style="font: inherit; font-size: 15px; font-weight: 700; padding: 14px; border: 1px solid #1F1D1A; background: #FFFFFF; border-radius: 12px">Google로 계속</button>
+    <button style="font: inherit; font-size: 15px; font-weight: 700; padding: 14px; border: 1px solid #1F1D1A; background: #1F1D1A; color: #F6F1E7; border-radius: 12px">Apple로 계속</button>
+    <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #6B645A; margin: 6px 0"><div style="flex-grow: 1; height: 1px; background: #E3DACB"></div>또는<div style="flex-grow: 1; height: 1px; background: #E3DACB"></div></div>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 500">이메일<input type="email" placeholder="you@example.com" style="font: inherit; font-size: 15px; padding: 13px 14px; border: 1px solid #CFC4B1; border-radius: 10px; background: #FBF8F2"></label>
+    <a href="LoginSent.dc.html" style="display: block; text-align: center; background: #1F1D1A; color: #F6F1E7; text-decoration: none; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 12px">로그인 링크 받기</a>
+    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px; font-size: 13px">
+      <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox">(필수) 이용약관 · 개인정보처리방침</label>
+      <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox">(필수) 만 16세 이상입니다</label>
+      <label style="display: flex; gap: 8px; align-items: center; color: #6B645A"><input type="checkbox">(선택) 마케팅 소식 받기</label>
+    </div>
+    <span style="font-size: 12px; color: #6B645A; line-height: 1.6">가입하면 원래 보던 화면으로 돌아가고, 이 기기에서 입력한 사주 정보가 계정에 저장돼요</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>고객 흐름</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<style>body{margin:0;background:#F6F1E7;font-family:"Noto Sans KR",sans-serif;color:#1F1D1A}a{color:#1F1D1A}a:hover{color:#2E6B5E}</style>
+</helmet>
+<div style="width: 4620px; height: 960px; background: #F6F1E7; position: relative">
+<svg width="4620" height="960" viewBox="0 0 4620 960" style="display: block" font-family="Noto Sans KR, sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1F1D1A"></path></marker>
+    <marker id="ag" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#B8893A"></path></marker>
+    <marker id="ar2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8A8173"></path></marker>
+  </defs>
+
+  <text x="40" y="60" font-family="Noto Serif KR, serif" font-weight="900" font-size="34" fill="#1F1D1A">고객 흐름</text>
+  <text x="40" y="96" font-size="18" fill="#6B645A">실선 = 메인 흐름 · 금색 = 조건 분기 · 점선 = 갈라지는 흐름</text>
+
+  <!-- entry labels -->
+  <text x="195" y="222" font-size="17" fill="#6B645A" text-anchor="middle">검색 · 광고로 진입</text>
+  <path d="M195 230 V296" stroke="#1F1D1A" stroke-width="2.5" fill="none" marker-end="url(#ar)"></path>
+  <text x="195" y="585" font-size="17" fill="#6B645A" text-anchor="middle">공유 카드 링크로 진입</text>
+  <path d="M195 592 V646" stroke="#8A8173" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path>
+
+  <!-- main row nodes (center y=345), columns cx = 195 + 470*i -->
+  <g font-size="20" text-anchor="middle">
+    <rect x="65" y="300" width="260" height="90" rx="14" fill="#FBF8F2" stroke="#1F1D1A" stroke-width="2"></rect><text x="195" y="338" font-weight="700">① 랜딩</text><text x="195" y="366" font-size="16" fill="#6B645A">/</text>
+    <rect x="535" y="300" width="260" height="90" rx="14" fill="#FBF8F2" stroke="#1F1D1A" stroke-width="2"></rect><text x="665" y="338" font-weight="700">② 리딩 · 입력</text><text x="665" y="366" font-size="16" fill="#6B645A">/reading · 가입 없음</text>
+    <rect x="1005" y="300" width="260" height="90" rx="14" fill="#FBF8F2" stroke="#1F1D1A" stroke-width="2"></rect><text x="1135" y="338" font-weight="700">③ 무료 결과</text><text x="1135" y="366" font-size="16" fill="#6B645A">AI 없음 · 비용 0</text>
+    <rect x="1475" y="300" width="260" height="90" rx="14" fill="#FBF8F2" stroke="#1F1D1A" stroke-width="2"></rect><text x="1605" y="338" font-weight="700">④ 로그인</text><text x="1605" y="366" font-size="16" fill="#6B645A">/login</text>
+    <rect x="1945" y="300" width="260" height="90" rx="14" fill="#FBF8F2" stroke="#1F1D1A" stroke-width="2"></rect><text x="2075" y="338" font-weight="700">⑤ 묶음 선택</text><text x="2075" y="366" font-size="16" fill="#6B645A">/pricing</text>
+    <rect x="2415" y="300" width="260" height="90" rx="14" fill="#FBF8F2" stroke="#1F1D1A" stroke-width="2"></rect><text x="2545" y="338" font-weight="700">⑥ 주문 요약 · 결제</text><text x="2545" y="366" font-size="16" fill="#6B645A">Toss 위젯 · USD</text>
+    <rect x="2885" y="300" width="260" height="90" rx="14" fill="#FBF8F2" stroke="#1F1D1A" stroke-width="2"></rect><text x="3015" y="338" font-weight="700">⑦ 생성 중</text><text x="3015" y="366" font-size="16" fill="#6B645A">3크레딧 예약</text>
+    <rect x="3355" y="300" width="260" height="90" rx="14" fill="#2E6B5E" stroke="#2E6B5E" stroke-width="2"></rect><text x="3485" y="338" font-weight="700" fill="#FFFFFF">⑧ 상세 리포트</text><text x="3485" y="366" font-size="16" fill="#DCEFE8">PDF · 다른 언어 재생성</text>
+  </g>
+
+  <!-- main arrows -->
+  <path d="M325 345 H531" stroke="#1F1D1A" stroke-width="2.5" fill="none" marker-end="url(#ar)"></path><text x="428" y="333" font-size="16" fill="#6B645A" text-anchor="middle">시작하기</text>
+  <path d="M795 345 H1001" stroke="#1F1D1A" stroke-width="2.5" fill="none" marker-end="url(#ar)"></path><text x="898" y="333" font-size="16" fill="#6B645A" text-anchor="middle">결과 보기</text>
+  <path d="M1265 345 H1471" stroke="#B8893A" stroke-width="2.5" fill="none" marker-end="url(#ag)"></path><text x="1368" y="333" font-size="16" fill="#8B6420" text-anchor="middle">상세 보기 · 비로그인</text>
+  <path d="M1735 345 H1941" stroke="#1F1D1A" stroke-width="2.5" fill="none" marker-end="url(#ar)"></path><text x="1838" y="333" font-size="16" fill="#6B645A" text-anchor="middle">Google · Apple</text>
+  <path d="M2205 345 H2411" stroke="#1F1D1A" stroke-width="2.5" fill="none" marker-end="url(#ar)"></path><text x="2308" y="333" font-size="16" fill="#6B645A" text-anchor="middle">다음</text>
+  <path d="M2675 345 H2881" stroke="#1F1D1A" stroke-width="2.5" fill="none" marker-end="url(#ar)"></path><text x="2778" y="333" font-size="16" fill="#6B645A" text-anchor="middle">승인 · 크레딧 지급</text>
+  <path d="M3145 345 H3351" stroke="#1F1D1A" stroke-width="2.5" fill="none" marker-end="url(#ar)"></path><text x="3248" y="333" font-size="16" fill="#6B645A" text-anchor="middle">성공 · 차감 확정</text>
+
+  <!-- conditional skips from ③ -->
+  <path d="M1115 300 V190 H2075 V296" stroke="#B8893A" stroke-width="2.5" fill="none" marker-end="url(#ag)"></path>
+  <text x="1600" y="180" font-size="16" fill="#8B6420" text-anchor="middle">상세 보기 · 로그인 · 크레딧 부족 → 충전</text>
+  <path d="M1155 300 V140 H3015 V296" stroke="#B8893A" stroke-width="2.5" fill="none" marker-end="url(#ag)"></path>
+  <text x="2320" y="130" font-size="16" fill="#8B6420" text-anchor="middle">상세 보기 · 로그인 · 크레딧 충분 → "3크레딧 사용" 확인 후 바로 생성</text>
+
+  <!-- branch row nodes (center y=695) -->
+  <g font-size="20" text-anchor="middle">
+    <rect x="65" y="650" width="260" height="90" rx="14" fill="#FFFFFF" stroke="#8A8173" stroke-width="2" stroke-dasharray="7 6"></rect><text x="195" y="688" font-weight="700">공유 카드</text><text x="195" y="716" font-size="16" fill="#6B645A">/s/:code · 개인정보 없음</text>
+    <rect x="1475" y="650" width="260" height="90" rx="14" fill="#FFFFFF" stroke="#8A8173" stroke-width="2" stroke-dasharray="7 6"></rect><text x="1605" y="688" font-weight="700">④-1 링크 발송</text><text x="1605" y="716" font-size="16" fill="#6B645A">이메일 로그인</text>
+    <rect x="2885" y="650" width="260" height="90" rx="14" fill="#FFFFFF" stroke="#B3401F" stroke-width="2" stroke-dasharray="7 6"></rect><text x="3015" y="688" font-weight="700">⑦-1 생성 실패</text><text x="3015" y="716" font-size="16" fill="#6B645A">크레딧 자동 복구</text>
+    <rect x="3355" y="650" width="260" height="90" rx="14" fill="#FFFFFF" stroke="#8A8173" stroke-width="2" stroke-dasharray="7 6"></rect><text x="3485" y="688" font-weight="700">⑨ 내 보고서</text><text x="3485" y="716" font-size="16" fill="#6B645A">/my</text>
+    <rect x="3825" y="650" width="260" height="90" rx="14" fill="#FFFFFF" stroke="#8A8173" stroke-width="2" stroke-dasharray="7 6"></rect><text x="3955" y="688" font-weight="700">⑨ 크레딧</text><text x="3955" y="716" font-size="16" fill="#6B645A">잔액 · 구매 내역 · 환불</text>
+    <rect x="4295" y="650" width="260" height="90" rx="14" fill="#FFFFFF" stroke="#8A8173" stroke-width="2" stroke-dasharray="7 6"></rect><text x="4425" y="688" font-weight="700">⑨ 설정</text><text x="4425" y="716" font-size="16" fill="#6B645A">언어 · 국가 · 탈퇴</text>
+  </g>
+
+  <!-- branch arrows -->
+  <path d="M325 695 H665 V394" stroke="#8A8173" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path><text x="495" y="683" font-size="16" fill="#6B645A" text-anchor="middle">나도 해보기</text>
+  <path d="M1605 390 V646" stroke="#8A8173" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path><text x="1618" y="520" font-size="16" fill="#6B645A">이메일</text>
+  <path d="M1735 695 H2035 V394" stroke="#8A8173" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path><text x="1885" y="683" font-size="16" fill="#6B645A" text-anchor="middle">링크 클릭</text>
+  <path d="M2995 390 V646" stroke="#B3401F" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path><text x="2984" y="520" font-size="16" fill="#B3401F" text-anchor="end">실패</text>
+  <path d="M3035 650 V394" stroke="#8A8173" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path><text x="3046" y="520" font-size="16" fill="#6B645A">다시 시도</text>
+  <path d="M3485 390 V646" stroke="#8A8173" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path><text x="3498" y="520" font-size="16" fill="#6B645A">내 보고서</text>
+  <path d="M3615 695 H3821" stroke="#8A8173" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path><text x="3718" y="683" font-size="16" fill="#6B645A" text-anchor="middle">탭</text>
+  <path d="M4085 695 H4291" stroke="#8A8173" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar2)"></path><text x="4188" y="683" font-size="16" fill="#6B645A" text-anchor="middle">탭</text>
+  <path d="M3955 740 V840 H2115 V394" stroke="#B8893A" stroke-width="2.5" fill="none" marker-end="url(#ag)"></path><text x="3035" y="868" font-size="16" fill="#8B6420" text-anchor="middle">충전하기 → ⑤ 묶음 선택</text>
+</svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":4620,"height":960}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

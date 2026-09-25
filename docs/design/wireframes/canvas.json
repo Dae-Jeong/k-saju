@@ -1,0 +1,25 @@
+{"v":3,"createdOnFiles":{"v":1,"at":"2026-09-25T15:10:00Z"},"title":"Saju Service Wireframes","launch":{"view":"canvas"},"pages":[],
+"boards":{
+"Flow.dc.html":{"x":0,"y":-1400,"w":4620,"h":960,"title":"고객 흐름 · 플로우차트"},
+"Main.dc.html":{"x":0,"y":0,"w":390,"h":2000,"title":"① 랜딩 /"},
+"ReadingInput.dc.html":{"x":470,"y":0,"w":390,"h":844,"title":"② 리딩 · 입력 /reading"},
+"ReadingResult.dc.html":{"x":940,"y":0,"w":390,"h":1900,"title":"③ 리딩 · 무료 결과 /reading"},
+"Login.dc.html":{"x":1410,"y":0,"w":390,"h":844,"title":"④ 로그인 /login"},
+"PricingSelect.dc.html":{"x":1880,"y":0,"w":390,"h":900,"title":"⑤ 가격 · 묶음 선택 /pricing"},
+"PricingCheckout.dc.html":{"x":2350,"y":0,"w":390,"h":1000,"title":"⑥ 가격 · 주문 요약 + 결제"},
+"ReportGenerating.dc.html":{"x":2820,"y":0,"w":390,"h":844,"title":"⑦ 보고서 · 생성 중"},
+"ReportDone.dc.html":{"x":3290,"y":0,"w":390,"h":1600,"title":"⑧ 보고서 · 완료 /reports/:id"},
+"ReadingShared.dc.html":{"x":0,"y":2400,"w":390,"h":1100,"title":"진입 · 공유 링크 /s/:code → ②"},
+"LoginSent.dc.html":{"x":1410,"y":2400,"w":390,"h":844,"title":"④-1 이메일 링크 발송 → ⑤"},
+"ReportFailed.dc.html":{"x":2820,"y":2400,"w":390,"h":844,"title":"⑦-1 생성 실패 → ⑦ 재시도"},
+"MyReports.dc.html":{"x":3290,"y":2400,"w":390,"h":844,"title":"⑨ 마이페이지 · 내 보고서 /my"},
+"MyCredits.dc.html":{"x":3760,"y":2400,"w":390,"h":1000,"title":"⑨ 마이페이지 · 크레딧 → 충전 ⑤"},
+"MySettings.dc.html":{"x":4230,"y":2400,"w":390,"h":900,"title":"⑨ 마이페이지 · 설정"}
+},
+"order":["Flow.dc.html","Main.dc.html","ReadingInput.dc.html","ReadingResult.dc.html","Login.dc.html","PricingSelect.dc.html","PricingCheckout.dc.html","ReportGenerating.dc.html","ReportDone.dc.html","ReadingShared.dc.html","LoginSent.dc.html","ReportFailed.dc.html","MyReports.dc.html","MyCredits.dc.html","MySettings.dc.html"],
+"notes":{
+"flowTitle":{"x":0,"y":-1700,"text":"고객 흐름 — 위 플로우차트의 칸이 아래 화면 열과 맞춰져 있어요","kind":"title1","maxW":4620},
+"row1":{"x":0,"y":-300,"text":"메인 흐름 · 방문 → 무료 결과 → 결제 → 상세 리포트","kind":"title1","maxW":3680},
+"row2":{"x":0,"y":2100,"text":"갈라지는 흐름 · 해당 화면 바로 아래","kind":"title1","maxW":4620}
+},
+"designSystems":[]}

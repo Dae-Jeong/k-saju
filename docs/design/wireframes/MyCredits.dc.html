@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>마이페이지 크레딧</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<style>body{margin:0;background:#F6F1E7;font-family:"Noto Sans KR",sans-serif;color:#1F1D1A}a{color:#1F1D1A}a:hover{color:#2E6B5E}</style>
+</helmet>
+<div style="width: 390px; height: 1000px; background: #F6F1E7; display: flex; flex-direction: column">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 12px">
+    <a href="Main.dc.html" style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 18px; letter-spacing: 0.04em; text-decoration: none">SERVICE</a>
+    <span style="font-size: 13px; color: #6B645A">잔액 12</span>
+  </div>
+  <div style="padding: 12px 24px 0"><h1 style="margin: 0 0 14px; font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 26px">마이페이지</h1></div>
+  <div style="display: flex; margin: 0 24px; border-bottom: 1px solid #E3DACB">
+    <a href="MyReports.dc.html" style="flex-grow: 1; text-align: center; padding: 12px 0; color: #6B645A; text-decoration: none">내 보고서</a>
+    <a href="MyCredits.dc.html" style="flex-grow: 1; text-align: center; padding: 12px 0; font-weight: 700; border-bottom: 2px solid #1F1D1A; text-decoration: none">크레딧</a>
+    <a href="MySettings.dc.html" style="flex-grow: 1; text-align: center; padding: 12px 0; color: #6B645A; text-decoration: none">설정</a>
+  </div>
+  <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 12px">
+    <div style="background: #FBF8F2; border: 1px solid #E3DACB; border-radius: 14px; padding: 18px">
+      <div style="font-size: 13px; color: #6B645A">사용 가능한 크레딧</div>
+      <div style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 36px">12</div>
+      <div style="font-size: 12px; color: #6B645A; line-height: 1.7">결제 크레딧 12 · 2031-09-24까지 유효<br>보너스 크레딧은 먼저 사용돼요 (지금 0)</div>
+    </div>
+    <a href="PricingSelect.dc.html" style="display: block; text-align: center; background: #B8893A; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 12px">충전하기</a>
+    <h2 style="margin: 12px 0 0; font-family: 'Noto Serif KR', serif; font-size: 18px">구매 내역</h2>
+    <div style="padding: 14px; border: 1px solid #E3DACB; border-radius: 12px; background: #FBF8F2; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; font-size: 14px"><span style="font-weight: 700">10 크레딧 (+1, 첫 구매 +1)</span><span>$9.90</span></div>
+      <div style="font-size: 12px; color: #6B645A">2026-09-25 · 3크레딧 사용 (보너스 2 → 결제 1)</div>
+      <button style="align-self: flex-start; font: inherit; font-size: 13px; font-weight: 700; padding: 8px 12px; border: 1px solid #1F1D1A; background: transparent; border-radius: 8px">잔액 환불 $8.02</button>
+    </div>
+    <div style="padding: 14px; border: 1px solid #E3DACB; border-radius: 12px; background: #FBF8F2; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; font-size: 14px"><span style="font-weight: 700">3 크레딧</span><span>$2.97</span></div>
+      <div style="font-size: 12px; color: #6B645A">2026-09-24 · 미사용</div>
+      <button style="align-self: flex-start; font: inherit; font-size: 13px; font-weight: 700; padding: 8px 12px; border: 1px solid #1F1D1A; background: transparent; border-radius: 8px">전액 환불 (7일 내)</button>
+    </div>
+    <span style="font-size: 12px; color: #6B645A">그 밖의 환불은 문의해 주세요</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

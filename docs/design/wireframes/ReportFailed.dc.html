@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>보고서 실패</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<style>body{margin:0;background:#F6F1E7;font-family:"Noto Sans KR",sans-serif;color:#1F1D1A}a{color:#1F1D1A}a:hover{color:#2E6B5E}</style>
+</helmet>
+<div style="width: 390px; height: 844px; background: #F6F1E7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 0 32px; box-sizing: border-box; text-align: center">
+  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#B3401F" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6"></path><path d="M12 16.5v.5"></path></svg>
+  <h1 style="margin: 0; font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 24px">리포트를 만들지 못했어요</h1>
+  <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #4A453F">예약했던 3크레딧은 자동으로 돌려드렸어요.<br>잠시 후 다시 시도해 주세요.</p>
+  <a href="ReportGenerating.dc.html" style="display: block; width: 100%; box-sizing: border-box; text-align: center; background: #1F1D1A; color: #F6F1E7; text-decoration: none; font-weight: 700; font-size: 16px; padding: 16px; border-radius: 12px">다시 시도</a>
+  <span style="display: block; width: 100%; box-sizing: border-box; text-align: center; font-weight: 700; font-size: 15px; padding: 14px; border: 1px solid #1F1D1A; border-radius: 12px">문의하기</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

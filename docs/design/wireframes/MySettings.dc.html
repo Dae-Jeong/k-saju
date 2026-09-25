@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>마이페이지 설정</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<style>body{margin:0;background:#F6F1E7;font-family:"Noto Sans KR",sans-serif;color:#1F1D1A}a{color:#1F1D1A}a:hover{color:#2E6B5E}</style>
+</helmet>
+<div style="width: 390px; height: 900px; background: #F6F1E7; display: flex; flex-direction: column">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 12px">
+    <a href="Main.dc.html" style="font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 18px; letter-spacing: 0.04em; text-decoration: none">SERVICE</a>
+    <span style="font-size: 13px; color: #6B645A">잔액 12</span>
+  </div>
+  <div style="padding: 12px 24px 0"><h1 style="margin: 0 0 14px; font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 26px">마이페이지</h1></div>
+  <div style="display: flex; margin: 0 24px; border-bottom: 1px solid #E3DACB">
+    <a href="MyReports.dc.html" style="flex-grow: 1; text-align: center; padding: 12px 0; color: #6B645A; text-decoration: none">내 보고서</a>
+    <a href="MyCredits.dc.html" style="flex-grow: 1; text-align: center; padding: 12px 0; color: #6B645A; text-decoration: none">크레딧</a>
+    <a href="MySettings.dc.html" style="flex-grow: 1; text-align: center; padding: 12px 0; font-weight: 700; border-bottom: 2px solid #1F1D1A; text-decoration: none">설정</a>
+  </div>
+  <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 14px">
+    <div style="font-size: 14px"><div style="font-size: 12px; color: #6B645A">계정</div>you@example.com · Google</div>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 500">언어<select style="font: inherit; font-size: 15px; padding: 12px; border: 1px solid #CFC4B1; border-radius: 10px; background: #FBF8F2"><option>한국어</option><option>English</option></select></label>
+    <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 500">국가<select style="font: inherit; font-size: 15px; padding: 12px; border: 1px solid #CFC4B1; border-radius: 10px; background: #FBF8F2"><option>대한민국 (KR)</option><option>United States (US)</option></select></label>
+    <label style="display: flex; gap: 8px; align-items: center; font-size: 14px"><input type="checkbox">마케팅 소식 받기</label>
+    <div style="height: 1px; background: #E3DACB"></div>
+    <button style="font: inherit; font-size: 15px; font-weight: 700; padding: 13px; border: 1px solid #1F1D1A; background: transparent; border-radius: 12px">내 데이터 내보내기</button>
+    <button style="font: inherit; font-size: 15px; font-weight: 700; padding: 13px; border: 1px solid #1F1D1A; background: transparent; border-radius: 12px">모든 기기에서 로그아웃</button>
+    <button style="font: inherit; font-size: 15px; font-weight: 700; padding: 13px; border: 1px solid #B3401F; color: #B3401F; background: transparent; border-radius: 12px">탈퇴하기</button>
+    <span style="font-size: 12px; color: #6B645A; line-height: 1.6">탈퇴하면 명식·보고서가 삭제되고 남은 크레딧은 소멸해요. 결제 기록은 법정 기간 동안 분리 보관돼요.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":900}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

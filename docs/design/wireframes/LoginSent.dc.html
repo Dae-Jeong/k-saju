@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>링크 발송</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<style>body{margin:0;background:#F6F1E7;font-family:"Noto Sans KR",sans-serif;color:#1F1D1A}a{color:#1F1D1A}a:hover{color:#2E6B5E}</style>
+</helmet>
+<div style="width: 390px; height: 844px; background: #F6F1E7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 0 32px; box-sizing: border-box; text-align: center">
+  <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#2E6B5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+  <h1 style="margin: 0; font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 24px">메일함을 확인하세요</h1>
+  <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #4A453F">you@example.com 으로 로그인 링크를 보냈어요.<br>링크를 누르면 바로 이어서 진행돼요.</p>
+  <button style="font: inherit; font-size: 14px; font-weight: 700; padding: 13px 24px; border: 1px solid #1F1D1A; background: transparent; border-radius: 12px">다시 보내기</button>
+  <a href="Login.dc.html" style="font-size: 13px; color: #6B645A">다른 방법으로 로그인</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

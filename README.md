@@ -12,6 +12,13 @@
 
 가격·환불·회원 등 운영 정책은 [`docs/policies/`](docs/policies/README.md)를 본다.
 
+## 화면 흐름
+
+![고객 흐름](docs/planning/images/screens/Flow.png)
+
+랜딩 → 입력 → 무료 결과(가입 없음) → 로그인 → 크레딧 충전 → 결제 → 상세 리포트 생성. 화면 6개 + 마이페이지이며,
+화면별 와이어프레임과 상세 흐름은 [`docs/planning/flow.md`](docs/planning/flow.md)를 본다.
+
 ## 기술 스택
 
 | 영역 | 기술 |
