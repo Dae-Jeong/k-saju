@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SAJU · Server Architecture</title>
+<title>Server Architecture</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#faf9f6;color:#263442;font-family:Arial,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
@@ -32,8 +32,8 @@ a{color:#298776}
 @media print{@page{size:A3 landscape;margin:8mm}main{padding:0}body{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 </style></head><body><main>
 <header>
-  <h1>SAJU <span class="sub">/ Server Architecture</span></h1>
-  <span class="status">prod · 설계안 / 미구현 · 클라우드 미정</span>
+  <h1>SERVICE <span class="sub">/ Server Architecture</span></h1>
+  <span class="status">prod · 설계안 / 미구현 · 서비스명·도메인·클라우드 미정</span>
 </header>
 <svg viewBox="0 0 1820 1175" role="img" aria-label="사용자가 DNS를 거쳐 Load Balancer, API를 지나 PostgreSQL까지 한 줄의 요청 경로로 연결됩니다. Vercel의 Next.js Web은 API를 CORS로 호출합니다. Worker는 API·Migrate Job과 함께 프라이빗 앱 서브넷에 있고 PostgreSQL과 통신하며 NAT를 거쳐 외부 LLM API를 호출합니다. Managed services(Registry, Storage, Secret Store, Logs)는 VPC 아래 별도 그룹으로 앱 서브넷에 연결됩니다. GitHub Actions는 Registry에 이미지를 올리고 Migrate Job과 앱 서브넷 경계에 각각 배포 신호를 보냅니다. 모든 배치는 설계안이며 클라우드는 미정입니다.">
 <defs>
@@ -128,15 +128,15 @@ a{color:#298776}
 
 <rect x="173" y="220" width="124" height="40" rx="8" fill="#fff" stroke="#b4bec6" stroke-width="1.2"/>
 <text x="235" y="245" text-anchor="middle" class="name-sm">DNS</text>
-<text x="235" y="278" text-anchor="middle" class="tiny">marinkim.xyz</text>
+<text x="235" y="278" text-anchor="middle" class="tiny">도메인 미정</text>
 
 <use href="#server" x="122" y="468" width="75" height="80" style="color:#20242a"/>
 <text x="160" y="572" text-anchor="middle" class="name">Next.js Web</text>
-<text x="160" y="590" text-anchor="middle" class="muted">saju.marinkim.xyz</text>
+<text x="160" y="590" text-anchor="middle" class="muted">{domain}</text>
 
 <use href="#lb" x="470" y="200" width="80" height="80" style="color:#dc9047"/>
 <text x="510" y="304" text-anchor="middle" class="name">Load Balancer</text>
-<text x="510" y="322" text-anchor="middle" class="muted">TLS · api.saju.marinkim.xyz</text>
+<text x="510" y="322" text-anchor="middle" class="muted">TLS · api.{domain}</text>
 
 <g style="color:#4f84b7">
   <use href="#server" x="859" y="186" width="70" height="75" opacity=".3"/>

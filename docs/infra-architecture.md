@@ -12,23 +12,23 @@ Status: 제안 · 2026-09-25
 - be: 관리형 컨테이너 서비스 (VM·Kubernetes 아님)
 - DB: 관리형 PostgreSQL + pgvector. 컨테이너 안에 DB를 두지 않는다 (컨테이너 디스크는 휘발성)
 - 비용: 가능한 한 무료 한도 안에서 운영
-- 도메인: `marinkim.xyz` (서브도메인은 아래 제안)
+- 서비스명·도메인: 미정. 문서에서는 `{domain}`으로 표기한다
 
 ## 논리 구조
 
 ```mermaid
 flowchart TB
     User(["User"])
-    DNS["DNS · marinkim.xyz"]
+    DNS["DNS · {domain}"]
 
     subgraph Vercel["Vercel"]
-        Web["web · Next.js (SSR)<br/>saju.marinkim.xyz"]
+        Web["web · Next.js (SSR)<br/>{domain}"]
     end
 
     subgraph Cloud["Cloud (prod)"]
         direction TB
         subgraph Run["관리형 컨테이너 서비스"]
-            Api["api · FastAPI<br/>api.saju.marinkim.xyz<br/>HTTPS · 관리형 TLS"]
+            Api["api · FastAPI<br/>api.{domain}<br/>HTTPS · 관리형 TLS"]
             Worker["worker<br/>같은 be 이미지 · 다른 command<br/>외부 ingress 없음"]
         end
         Migrate["migrate job<br/>alembic upgrade head<br/>배포마다 1회"]
@@ -146,8 +146,8 @@ sequenceDiagram
 
 | 호스트 | 대상 |
 | --- | --- |
-| `saju.marinkim.xyz` | Vercel (web) |
-| `api.saju.marinkim.xyz` | 클라우드 api (관리형 TLS) |
+| `{domain}` | Vercel (web) |
+| `api.{domain}` | 클라우드 api (관리형 TLS) |
 
 ## 미정
 

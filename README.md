@@ -1,4 +1,4 @@
-# saju
+# Service (이름 미정)
 
 FastAPI backend (`be/`) + Next.js frontend (`fe/`) + PostgreSQL, orchestrated
 with Docker Compose. See `AGENTS.md` for project conventions and routing.
