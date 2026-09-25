@@ -8,71 +8,63 @@ Status: 제안 · 기준: [정책 v0.1.0](policies/README.md)
 flowchart LR
     Root["사이트 · / (ko) · /en (en)"]
 
-    Root --> Public["공개 · 비회원 가능"]
-    Root --> Auth["인증"]
-    Root --> Member["회원 전용"]
+    Root --> Screens["사용자 화면 6개"]
     Root --> Legal["법적 고지"]
+    Root --> Handlers["처리 경로 (화면 없음)"]
 
-    Public --> Landing["랜딩 /"]
-    Public --> Reading["입력 + 무료 결과 /reading"]
-    Public --> Share["공유 카드 /s/:code"]
-    Public --> Pricing["판매 /pricing"]
+    Screens --> Landing["1 랜딩 /"]
+    Screens --> Reading["2 리딩 /reading<br/>입력 + 무료 결과 + 공유 카드"]
+    Screens --> Pricing["3 가격·결제 /pricing<br/>묶음 선택 + Toss 결제 위젯"]
+    Screens --> Login["4 로그인 /login"]
+    Screens --> Report["5 보고서 /reports/:id<br/>생성 중 → 상세 · PDF"]
+    Screens --> Account["6 마이페이지 /account<br/>내 보고서 · 크레딧 · 설정"]
 
-    Auth --> Login["가입·로그인 /login"]
-    Auth --> Verify["이메일 링크 확인 /login/verify"]
+    Legal --> Terms["/legal/terms"]
+    Legal --> Privacy["/legal/privacy"]
+    Legal --> Refund["/legal/refund"]
 
-    Member --> Checkout["결제"]
-    Member --> Reports["보고서"]
-    Member --> Account["계정"]
-
-    Checkout --> Pay["결제 /checkout/:orderId"]
-    Checkout --> PaySuccess["결제 성공 /checkout/success"]
-    Checkout --> PayFail["결제 실패 /checkout/fail"]
-
-    Reports --> Report["생성 중 · 상세 보고서 /reports/:id"]
-
-    Account --> MyReports["내 보고서 /account/reports"]
-    Account --> Credits["크레딧·구매 내역·환불 /account/credits"]
-    Account --> Settings["설정 /account/settings"]
-
-    Legal --> Terms["이용약관 /legal/terms"]
-    Legal --> Privacy["개인정보처리방침 /legal/privacy"]
-    Legal --> Refund["환불 정책 /legal/refund"]
+    Handlers --> Verify["/login/verify → 원래 화면"]
+    Handlers --> PayOk["/checkout/success → 보고서 또는 이전 화면"]
+    Handlers --> PayFail["/checkout/fail → /pricing"]
+    Handlers --> ShareLink["/s/:code → /reading"]
 
     classDef group fill:#e8f1fb,stroke:#4f7fac,color:#1f3b57
-    class Public,Auth,Member,Legal,Checkout,Reports,Account group
+    class Screens,Legal,Handlers group
 ```
 
 페이지 사이의 이동 흐름은 [유저 저니](user-journey.md)를 본다.
 
-## 페이지 목록
+## 사용자 화면
 
-| 영역 | 페이지 | 경로 | 접근 | 주요 정책 |
-| --- | --- | --- | --- | --- |
-| 공개 | 랜딩 | `/` | 모두 | 서비스 소개 + CTA "시작하기" → `/reading`. 입력 폼은 두지 않는다. I18N-006 |
-| 공개 | 입력 + 무료 결과 | `/reading` | 모두 | 한 화면에서 입력하면 아래에 무료 결과가 나온다. SAJU-001, MEM-003 (입력값은 브라우저에만) |
-| 공개 | 공유 카드 | `/s/:code` | 모두 | 명식 코드만 · 개인정보 없음 · 일간별 OG 이미지 |
-| 공개 | 판매 | `/pricing` | 모두 | PAY-008 (Free · 1 · 3 · 10★ · 100) |
-| 인증 | 가입·로그인 | `/login` | 비회원 | MEM-004, MEM-006, MEM-007 |
-| 인증 | 이메일 링크 확인 | `/login/verify` | 비회원 | MEM-004 |
-| 결제 | 결제 | `/checkout/:orderId` | 회원 | PAY-010, PAY-012 |
-| 결제 | 결제 성공 | `/checkout/success` | 회원 | PAY-030~032 (승인 후 크레딧 지급) |
-| 결제 | 결제 실패 | `/checkout/fail` | 회원 | PAY-034 |
-| 보고서 | 생성 중 · 상세 보고서 | `/reports/:id` | 회원 (본인) | AIU-003, AIU-005, PAY-020 |
-| 계정 | 내 보고서 | `/account/reports` | 회원 | SAJU-006 (보류) |
-| 계정 | 크레딧·구매 내역·환불 | `/account/credits` | 회원 | PAY-021, PAY-040~045 |
-| 계정 | 설정 | `/account/settings` | 회원 | MEM-008 (언어·국가·마케팅 동의 · 데이터 내보내기 · 탈퇴) |
-| 법적 | 이용약관 · 개인정보처리방침 · 환불 정책 | `/legal/*` | 모두 | MEM-006, MEM-011, PAY-040~045 |
+| # | 화면 | 경로 | 접근 | 담는 것 | 주요 정책 |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 랜딩 | `/` | 모두 | 서비스 소개, CTA "시작하기" → `/reading` | I18N-006 |
+| 2 | 리딩 | `/reading` | 모두 | 입력 폼 → 같은 화면에 무료 결과 → "상세 보기". 공유 링크로 들어오면 공유 카드 + "나도 해보기" | SAJU-001, MEM-003 |
+| 3 | 가격·결제 | `/pricing` | 모두 (결제는 회원) | Free · 1 · 3 · 10★ · 100 선택 → 같은 화면에서 주문 요약 + Toss 결제 위젯 | PAY-008, PAY-010, PAY-012 |
+| 4 | 로그인 | `/login` | 비회원 | Google · Apple · 이메일 링크, 약관 동의, 16세 확인 | MEM-004, MEM-006, MEM-007 |
+| 5 | 보고서 | `/reports/:id` | 본인 | 생성 중 → 상세 보고서, PDF 다운로드 | AIU-003, AIU-005, PAY-020 |
+| 6 | 마이페이지 | `/account` | 회원 | 탭: 내 보고서 / 크레딧·구매 내역·환불 / 설정(언어·국가·마케팅 동의·데이터 내보내기·탈퇴) | MEM-008, PAY-021, PAY-040~045 |
+| — | 법적 고지 | `/legal/terms` · `/legal/privacy` · `/legal/refund` | 모두 | 정적 문서 | MEM-006, MEM-011, PAY-040~045 |
 
-- 헤더·푸터 공통 요소: 언어 전환(ko ↔ en), 로그인·계정, 크레딧 잔액(회원), 법적 고지 링크, 쿠키 동의 배너(EU).
-- 로그인이 필요한 페이지에 비회원이 들어오면 `/login`으로 보내고, 가입 후 원래 페이지로 돌아온다.
-- 무료 결과의 **"상세 보기"** 동작:
+- 화면 이름: 한국어 "마이페이지", 영어 "My Account".
+- 공통 요소: 언어 전환(ko ↔ en), 로그인·마이페이지, 크레딧 잔액(회원), 법적 고지 링크, 쿠키 동의 배너(EU).
+- 로그인이 필요한 화면에 비회원이 들어오면 `/login`으로 보내고, 가입 후 원래 화면으로 돌아온다.
+- 리딩 화면의 **"상세 보기"** 동작:
 
   | 상태 | 이동 |
   | --- | --- |
   | 비로그인 | `/login` → 가입·로그인 후 `/reading`으로 복귀 (브라우저의 입력값을 계정에 저장) |
   | 로그인 · 크레딧 부족 | `/pricing` → 결제 → 보고서 생성 |
-  | 로그인 · 크레딧 충분 | 확인 후 바로 보고서 생성 (`/reports/:id`) |
+  | 로그인 · 크레딧 충분 | "3크레딧 사용" 확인 → 바로 보고서 생성 (`/reports/:id`) |
+
+## 처리 경로 (화면 없음)
+
+| 경로 | 처리 | 이동 |
+| --- | --- | --- |
+| `/login/verify` | 이메일 링크 확인 | 원래 가던 화면 |
+| `/checkout/success` | 금액 검증 → 결제 승인 → 크레딧 지급 (PAY-030~032) | 보고서 생성 화면, 충전만 했으면 이전 화면 + "충전 완료" 알림 |
+| `/checkout/fail` | 에러 코드 확인 (PAY-034) | `/pricing` + 실패 안내 알림 |
+| `/s/:code` | 공유 코드 해석 | `/reading` (공유 카드 표시) |
 
 ## 이메일 알림
 
@@ -87,4 +79,4 @@ flowchart LR
 
 ## 정하지 않은 것
 
-- 보고서 공유 링크를 회원 보고서에도 제공할지 (SAJU-005 보류)
+- 상세 보고서 공유 링크 제공 여부 (SAJU-005 보류)
