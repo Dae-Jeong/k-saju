@@ -23,7 +23,7 @@
 
 ## 스택
 
-- 백엔드: FastAPI + uv + SQLAlchemy(async) + Alembic + PostgreSQL
+- 백엔드: FastAPI + uv + SQLAlchemy(async) + Alembic + PostgreSQL(pgvector, RAG용)
 - 프론트엔드: Next.js 16 + pnpm + Tailwind + shadcn/radix + TanStack Query
 - DB: PostgreSQL (compose의 `postgres` 서비스, 컨테이너 `saju-postgres`)
 

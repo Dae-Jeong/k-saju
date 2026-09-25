@@ -1,6 +1,7 @@
 # API
 
-FastAPI + uv + PostgreSQL backend skeleton. Python version is pinned in
+FastAPI + uv + PostgreSQL (with the `pgvector` extension, for RAG) backend
+skeleton. Python version is pinned in
 `.python-version`; dependencies are managed in `pyproject.toml` and `uv.lock`.
 `src/app/` is the application's import package (distribution name is `api`).
 

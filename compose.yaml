@@ -2,7 +2,7 @@ name: ${COMPOSE_PROJECT_NAME:-saju}
 
 services:
   postgres:
-    image: postgres:18
+    image: pgvector/pgvector:pg18
     container_name: ${COMPOSE_PROJECT_NAME:-saju}-postgres
     environment:
       POSTGRES_DB: ${DB_NAME:-saju}
