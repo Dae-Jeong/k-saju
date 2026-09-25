@@ -4,7 +4,7 @@
 COMPOSE := docker compose -f infra/docker/compose.local.yaml --project-directory . --env-file .env
 
 # Loads the root .env into the recipe's shell (process env only — the app
-# itself never reads .env files). See docs/env.md.
+# itself never reads .env files). See docs/architecture/env.md.
 LOAD_ENV = set -a; . ./.env; set +a;
 
 help:

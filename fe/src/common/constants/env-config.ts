@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 // The app reads only OS environment variables — Next.js is never allowed to
-// load them from an fe/.env* file (none exist in this repo; see docs/env.md
+// load them from an fe/.env* file (none exist in this repo; see docs/architecture/env.md
 // at the repo root). NEXT_PUBLIC_* vars are baked in at build time (passed
 // as Docker build args in fe/Dockerfile); this module validates them eagerly
 // on import so both `pnpm build` and server start fail fast with every

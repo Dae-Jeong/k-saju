@@ -2,7 +2,7 @@
 
 Status: 제안 · 2026-09-25
 
-근거: [경쟁 서비스 분석](research/competitive-analysis.md). 비회원 무료 짧은 리포트 → 1회 결제 상세 리포트, 구독 없음,
+근거: [경쟁 서비스 분석](competitive-analysis.md). 비회원 무료 짧은 리포트 → 1회 결제 상세 리포트, 구독 없음,
 대화형이 아니라 입력하면 결과가 나오는 형태.
 
 ```mermaid
@@ -34,13 +34,13 @@ flowchart TB
     subgraph Pay["⑤ 결제 · 1회"]
         Signup["가벼운 가입<br/>이메일 링크 · 소셜"]
         Checkout["외부 PG 결제"]
-        Webhook["PG 웹훅 확정 · 이용권 지급"]
+        Webhook["PG 웹훅 확정 · 크레딧 지급"]
     end
 
     subgraph Paid["⑥ 상세 리포트 · AI"]
-        Generating["생성 중 · 이용권 예약"]
+        Generating["생성 중 · 크레딧 예약"]
         Report["상세 리포트<br/>성격 · 연애 · 직업/재물 · 건강 · 대운 · 올해"]
-        Retry["실패: 과금 없이 재시도<br/>이용권 복구"]
+        Retry["실패: 과금 없이 재시도<br/>크레딧 복구"]
         PDF["PDF 다운로드"]
     end
 
@@ -61,7 +61,7 @@ flowchart TB
     Compare -.-> NewVisitor
 
     Locked -->|"더 보기"| Signup --> Checkout --> Webhook --> Generating
-    Generating -->|"성공 · 이용권 차감"| Report
+    Generating -->|"성공 · 크레딧 차감"| Report
     Generating -->|"실패"| Retry
     Report --> PDF
     Report --> MyReports
@@ -78,12 +78,12 @@ flowchart TB
 | ③ 무료 결과 | 사주 · i18n | AI 호출 없음, 미리 써둔 콘텐츠, 같은 입력이면 같은 결과 |
 | ④ 공유 루프 | 사주 | 카드·요약만 공개, 상세 리포트는 비공개. 점선은 선택 흐름 |
 | ⑤ 결제 | 회원 · 결제 | 결제 시점 가입, 결제 확정은 웹훅 기준, 멱등 처리 |
-| ⑥ 상세 리포트 | 사주 · AI 사용 내역 · 결제 | 이용권 예약 → 성공 시 차감 / 실패 시 복구, 호출마다 비용 기록·한도 확인 |
+| ⑥ 상세 리포트 | 사주 · AI 사용 내역 · 결제 | 크레딧 예약 → 성공 시 차감 / 실패 시 복구, 호출마다 비용 기록·한도 확인 |
 | ⑦ 재방문 · 사후 | 회원 · 결제 | 리포트 재열람 보장, 7일 환불, 탈퇴 시 개인정보 삭제·결제 기록은 분리 보관 |
 
 ## 상세 흐름 — 방문부터 가입·결제·리포트까지
 
-회원 정책([members.md](policies/members.md))과 결제 정책([payments.md](policies/payments.md))을 반영한 흐름이다.
+회원 정책([members.md](../policies/members.md))과 결제 정책([payments.md](../policies/payments.md))을 반영한 흐름이다.
 
 ```mermaid
 sequenceDiagram

@@ -28,7 +28,7 @@ isolated run (see the machine's local dev conventions for reserved ports).
 The app reads only OS environment variables — it never loads a `.env` file
 itself (`Settings` has no `env_file`). The single spec is the root
 `../.env.example`; local values come from the root `.env` (gitignored),
-loaded into the process env by the root `Makefile`. See `../docs/env.md`.
+loaded into the process env by the root `Makefile`. See `../docs/architecture/env.md`.
 
 | Setting | Role |
 | --- | --- |

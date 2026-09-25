@@ -3,7 +3,7 @@
 Version: **v0.1.0** · 회원·결제·AI 사용 내역·i18n 합의, 사주는 "보고서"로 추상화한 상태.
 사주 심층 설계까지 끝나면 **v1.0.0**으로 올리고 git 태그 `plan-v1.0.0`을 붙인다. 버전마다 git 태그 `plan-vX.Y.Z`를 남긴다.
 
-도메인 경계는 [../domains.md](../domains.md), 단계별 흐름은 [../user-journey.md](../user-journey.md)를 따른다.
+도메인 경계는 [도메인 경계](../architecture/domains.md), 단계별 흐름은 [유저 저니](../planning/user-journey.md)를 따른다.
 
 ## 원칙
 
@@ -19,7 +19,7 @@ Version: **v0.1.0** · 회원·결제·AI 사용 내역·i18n 합의, 사주는 
 | --- | --- | --- | --- |
 | 회원 | [members.md](members.md) | `MEM-` | 합의 |
 | 결제 | [payments.md](payments.md) | `PAY-` | 합의 (확인 필요 항목 있음) |
-| 사주 | saju.md | `SAJU-` | 보류 (보고서로 추상화, 별도 심층 설계) |
+| 사주 | [saju.md](saju.md) | `SAJU-` | 보류 (보고서로 추상화, 별도 심층 설계) |
 | AI 사용 내역 | [ai-usage.md](ai-usage.md) | `AIU-` | 합의 |
 | i18n | [i18n.md](i18n.md) | `I18N-` | 합의 |
 

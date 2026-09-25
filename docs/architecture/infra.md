@@ -78,7 +78,7 @@ flowchart TB
 ![Server architecture](images/server-architecture.png)
 
 > 설계안 · 미구현. 클라우드 미정이라 아이콘은 모두 일반화된 심볼이며 특정 클라우드 제품을
-> 가리키지 않는다. 전체 배치도(HTML/SVG 원본): [architecture/server-architecture.html](architecture/server-architecture.html)
+> 가리키지 않는다. 전체 배치도(HTML/SVG 원본): [server-architecture.html](server-architecture.html)
 
 | 서브넷 | 구성요소 | 인바운드 | 아웃바운드 |
 | --- | --- | --- | --- |

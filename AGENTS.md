@@ -18,7 +18,7 @@
 | `fe/` | Next.js 프론트엔드. 상세는 `fe/README.md`, `fe/AGENTS.md` |
 | `infra/terraform/` | 배포 인프라 as code. 아직 비어 있음(후순위, 아래 참고) |
 | `infra/docker/compose.local.yaml` | 로컬 개발 전용 compose. 배포 인프라 아님 |
-| `docs/` | 저장소 문서 |
+| `docs/` | 정책·기획·기술 설계 문서. 진입점은 `docs/README.md` (결정은 `docs/policies/`가 소유) |
 | `tasks/` | 작업 기록 |
 | `Makefile`, `.env.example` | 루트 오케스트레이션 |
 
@@ -67,7 +67,7 @@ DB/앱 격리 규약은 글로벌 agent wiki의 로컬 개발 환경 규약을 �
 실행 전에 프로세스 환경으로 export하고, compose는 `--env-file .env` +
 `${VAR:?...}` interpolation으로 읽는다. be `Settings()`(pydantic)와 fe
 `env-config.ts`(zod)가 시작 시 필수 키를 검증해 누락되면 exit 1한다. 상세 흐름은
-`docs/env.md` 참고.
+`docs/architecture/env.md` 참고.
 
 ## Make 타겟 (작업 기준)
 

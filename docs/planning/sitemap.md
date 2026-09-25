@@ -1,6 +1,6 @@
 # 사이트맵 (초안)
 
-Status: 제안 · 기준: [정책 v0.1.0](policies/README.md)
+Status: 제안 · 기준: [정책 v0.1.0](../policies/README.md)
 
 경로는 한국어 기준이다. 영어는 같은 경로 앞에 `/en`이 붙는다 (I18N-001). 예: `/pricing` ↔ `/en/pricing`.
 

@@ -17,7 +17,7 @@ flowchart TB
 
     Calc["domain/saju<br/>명식 계산 (순수 함수)"]
     AI["ai.facade<br/>LLM · Embedding 실행"]
-    Pay["결제 payments<br/>주문 · 결제 · 이용권"]
+    Pay["결제 payments<br/>주문 · 결제 · 크레딧"]
     I18n["i18n<br/>지원 locale · 용어 번역"]
 
     Usage["AI 사용 내역 ai_usage<br/>호출 기록 · 한도 · 비용"]
@@ -31,7 +31,7 @@ flowchart TB
 
     Saju -->|"명식 계산"| Calc
     Saju -->|"해석 생성"| AI
-    Saju -->|"이용권 확인·차감"| Pay
+    Saju -->|"크레딧 확인·차감"| Pay
     Saju -->|"locale · 용어"| I18n
 
     AI -->|"한도 확인 · 기록"| Usage

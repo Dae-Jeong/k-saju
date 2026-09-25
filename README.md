@@ -39,10 +39,10 @@ flowchart LR
 
 ## Deployment architecture (설계안)
 
-![Server architecture](docs/images/server-architecture.png)
+![Server architecture](docs/architecture/images/server-architecture.png)
 
 prod 단일 · fe는 Vercel · be(api·worker·migrate)는 관리형 컨테이너 · 관리형 PostgreSQL + pgvector · 서비스명·도메인·클라우드 미정.
-네트워크 규칙, 클라우드별 대응, 배포 흐름은 [`docs/infra-architecture.md`](docs/infra-architecture.md)를 본다.
+네트워크 규칙, 클라우드별 대응, 배포 흐름은 [`docs/architecture/infra.md`](docs/architecture/infra.md)를 본다.
 
 ## Environment variables
 
@@ -78,12 +78,12 @@ flowchart TB
 
 - 변수 추가·변경은 `.env.example`에 먼저 적는다 (`# required` / `# optional (default: X)`).
 - 앱은 `.env`를 직접 읽지 않는다. 필수 값이 없으면 기동하지 않는다.
-- 자세한 규칙과 검증 지점: [`docs/env.md`](docs/env.md)
+- 자세한 규칙과 검증 지점: [`docs/architecture/env.md`](docs/architecture/env.md)
 
 ## Quick start
 
 ```sh
-make env         # create .env from .env.example (see docs/env.md)
+make env         # create .env from .env.example (see docs/architecture/env.md)
 
 make db          # start postgres only (127.0.0.1:5433)
 make migrate     # apply backend migrations

@@ -1,6 +1,6 @@
 # 결제 정책 (payments)
 
-Status: 논의 중 · 항목별로 합의하면 `상태: 합의`로 바꾼다.
+Status: 합의 (plan v0.1.0)
 
 PG는 Toss Payments(USD MID: 해외 카드 + PayPal), 판매 방식은 크레딧이다.
 
