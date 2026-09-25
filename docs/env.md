@@ -12,8 +12,8 @@
 
 ```mermaid
 flowchart TB
-    Spec["<b>.env.example</b> (git 커밋)<br/>변수 명세 · required / optional"]
-    Env["<b>.env</b> (gitignore)<br/>로컬 값의 유일한 원천"]
+    Spec[".env.example (git 커밋)<br/>변수 명세 · required / optional"]
+    Env[".env (gitignore)<br/>로컬 값의 유일한 원천"]
     Spec -->|"make env<br/>(최초 1회, 덮어쓰지 않음)"| Env
 
     subgraph Local["로컬"]
