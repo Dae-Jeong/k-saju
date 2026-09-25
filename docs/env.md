@@ -10,12 +10,40 @@
 `# optional (default: X)` 주석이 붙는다. `be/.env.example`, `fe/.env.example`은
 없다 — 모두 루트로 병합됐다.
 
-```
-.env.example (committed spec, required/optional comments) --cp--> .env (gitignored, local only)
-  .env --Makefile export (set -a; . ./.env)--> make dev-be / make dev-fe host processes
-  .env --compose interpolation, environment: VAR: ${VAR:?VAR is required}--> saju-api / saju-web containers
-Both → app startup validation: be Settings() (pydantic, no env_file) / fe env-config.ts (zod) → exit 1 with missing keys
-fe exception: NEXT_PUBLIC_* baked at build → passed as docker build args, validated at build time; server-only vars validated at server start
+```text
+                    ┌──────────────────────────────┐
+                    │ .env.example (git 커밋)       │  ← 변수 명세 (required/optional 주석)
+                    └──────────────┬───────────────┘
+                                   │ make env (최초 1회, 덮어쓰지 않음)
+                                   ▼
+┌──────────────────────── 로컬 ─────────────────────────────────────┐
+│                    ┌──────────────────────┐                        │
+│                    │ .env (gitignore)     │  ← 로컬 값의 유일한 원천 │
+│                    └───┬──────────────┬───┘                        │
+│        Makefile export │              │ compose --env-file .env     │
+│      (set -a; . .env)  │              │ environment: ${VAR:?}       │
+│                        ▼              ▼                            │
+│   ┌── 호스트 프로세스 ─────┐   ┌── 컨테이너 (make up) ────────┐    │
+│   │ make dev-be / migrate │   │ saju-api                     │    │
+│   │ make dev-fe / test    │   │ saju-web                     │    │
+│   └──────────┬───────────┘   └──────────────┬───────────────┘    │
+└──────────────┼──────────────────────────────┼────────────────────┘
+               │   둘 다 OS 환경변수로만 받음   │
+               ▼                              ▼
+        ┌───────────────────────────────────────────────┐
+        │ 앱 시작 시 검증                                 │
+        │  be: Settings() ─ pydantic, .env 파일 안 읽음   │
+        │  fe: env-config.ts ─ zod (빌드 + 서버 기동)     │
+        │  누락/형식 오류 → 누락 키 전부 출력 후 exit 1    │
+        └───────────────────────────────────────────────┘
+               ▲
+               │ 동일한 방식
+┌──────────────┴──────────── 배포 (OCI, 추후) ──────────────────────┐
+│  서버/컨테이너 런타임 환경변수 주입 · 비밀값은 Vault → 환경변수    │
+│  서버에 .env 파일을 두지 않음                                      │
+└──────────────────────────────────────────────────────────────────┘
+
+fe 예외: NEXT_PUBLIC_* 는 빌드 시 JS 번들에 박힘 → docker build arg로 전달, 빌드 단계에서 검증
 ```
 
 ## 사용법
