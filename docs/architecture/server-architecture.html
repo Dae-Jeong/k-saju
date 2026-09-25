@@ -86,21 +86,21 @@ a{color:#298776}
 <!-- ============ connectors ============ -->
 <!-- request: Users -> DNS -> LB -> API -> DB -->
 <path class="wire" d="M144,240H171"/>
-<path class="wire" d="M297,240H466"/>
-<path d="M205,510H360V240" fill="none" stroke="#8a969f" stroke-width="1.7"/>
+<path class="wire" d="M297,240H468"/>
+<path d="M197,507H360V240" fill="none" stroke="#8a969f" stroke-width="1.7"/>
 <circle cx="360" cy="240" r="4" fill="#8a969f"/>
-<path class="wire" d="M552,240H876"/>
-<path class="wire" d="M950,240H1268"/>
+<path class="wire" d="M552,240H856"/>
+<path class="wire" d="M946,240H1274"/>
 <text x="1150" y="228" text-anchor="middle" class="tiny">SQL</text>
 <!-- Migrate / Worker -> DB -->
-<path class="wire" d="M940,440H1140V268H1270" opacity=".8"/>
+<path class="wire" d="M937,440H1140V262H1274" opacity=".8"/>
 <text x="962" y="430" class="tiny">alembic</text>
-<path class="wire" d="M950,614H1160V285H1272"/>
-<text x="962" y="604" class="tiny">job · vector 검색</text>
+<path class="wire" d="M946,616H1160V284H1274"/>
+<text x="962" y="606" class="tiny">job · vector 검색</text>
 <!-- egress -->
-<path class="egress" d="M950,646H1276"/>
-<path class="egress" d="M1364,646H1634"/>
-<text x="1588" y="636" text-anchor="middle" class="tiny" style="fill:#c9772f">HTTPS</text>
+<path class="egress" d="M946,640H1278"/>
+<path class="egress" d="M1362,640H1640"/>
+<text x="1588" y="630" text-anchor="middle" class="tiny" style="fill:#c9772f">HTTPS</text>
 
 <!-- managed services <-> app subnet -->
 <path class="observe" d="M780,952V856"/>
@@ -109,18 +109,18 @@ a{color:#298776}
 <text x="928" y="905" class="tiny">RAG 원문</text>
 <path class="observe" d="M1060,952V856"/>
 <text x="1068" y="905" class="tiny">env 주입</text>
-<path class="observe" d="M1100,856V872H1200V950"/>
-<text x="1208" y="915" class="tiny">logs</text>
+<path class="observe" d="M1100,856V872H1200V954"/>
+<text x="1208" y="905" class="tiny">logs</text>
 
 <!-- deploy -->
-<path class="deploy" d="M160,946V626"/>
+<path class="deploy" d="M160,934V626"/>
 <text x="146" y="786" class="tiny" style="fill:#8b6eb1" transform="rotate(-90 146 786)" text-anchor="middle">Git 연동 배포</text>
-<path class="deploy" d="M200,1020H742"/>
-<text x="420" y="1011" class="tiny" style="fill:#8b6eb1">build · push</text>
-<path class="deploy" d="M200,960H600V452H882"/>
-<text x="222" y="951" class="tiny" style="fill:#8b6eb1">① migrate</text>
-<path class="deploy" d="M200,990H650V700H696"/>
-<text x="222" y="981" class="tiny" style="fill:#8b6eb1">② 롤링 교체</text>
+<path class="deploy" d="M200,989H742"/>
+<text x="420" y="982" class="tiny" style="fill:#8b6eb1">build · push</text>
+<path class="deploy" d="M200,946H600V440H882"/>
+<text x="214" y="939" class="tiny" style="fill:#8b6eb1">① migrate</text>
+<path class="deploy" d="M200,968H650V700H696"/>
+<text x="214" y="961" class="tiny" style="fill:#8b6eb1">② 롤링 교체</text>
 
 <!-- ============ nodes ============ -->
 <use href="#computer" x="58" y="202" width="86" height="74"/>
@@ -175,9 +175,9 @@ a{color:#298776}
 <use href="#monitor" x="1165" y="957" width="70" height="60" style="color:#738693"/>
 <text x="1200" y="1044" text-anchor="middle" class="name-sm">Logs · Metrics</text>
 
-<use href="#server" x="122" y="950" width="75" height="80" style="color:#33404d"/>
-<text x="160" y="1052" text-anchor="middle" class="name">GitHub Actions</text>
-<text x="160" y="1070" text-anchor="middle" class="muted">build → deploy</text>
+<use href="#server" x="122" y="936" width="75" height="80" style="color:#33404d"/>
+<text x="160" y="1038" text-anchor="middle" class="name">GitHub Actions</text>
+<text x="160" y="1056" text-anchor="middle" class="muted">build → deploy</text>
 
 <!-- ============ legend ============ -->
 <path d="M40 1158H76" stroke="#8a969f" stroke-width="2"/><text x="84" y="1162" class="muted">요청 HTTP / SQL</text>
