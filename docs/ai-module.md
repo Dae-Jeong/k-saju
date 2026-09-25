@@ -17,22 +17,41 @@ AI 실행은 별도 앱이 아니라 `be/` 안의 모듈(`be/src/app/ai/`)로 �
 - 사주 계산(`app.domain.saju`)은 DB·LLM 없는 순수 함수다. AI는 계산 결과를 입력으로 받을 뿐 계산하지
   않는다.
 
-## 예상 폴더
+## 예상 폴더와 의존 방향
 
-```text
-be/src/app/
-├── domain/saju/            # 만세력·명식 계산 (순수 함수)
-├── routers/readings.py     # HTTP 입력·응답
-├── services/readings.py    # 명식 계산 → job 생성 (트랜잭션 소유)
-├── repositories/           # readings, jobs, knowledge(pgvector)
-├── worker.py               # job 폴링 → ai.facade 호출
-└── ai/
-    ├── facade.py           # 공개 진입점: interpret(), ingest()
-    ├── ports.py            # LlmProvider, EmbeddingProvider (Protocol)
-    ├── providers/          # anthropic.py, openai.py ... (port 구현)
-    ├── retrieval.py        # 질의 임베딩 → 유사 청크 검색
-    ├── prompts/            # 프롬프트 템플릿
-    └── validation.py       # LLM 출력 스키마 검증
+```mermaid
+flowchart TB
+    subgraph APP["be/src/app/"]
+        direction TB
+        ROUTER["routers/readings.py<br/>HTTP 입력·응답"]
+        SERVICE["services/readings.py<br/>명식 계산 → job 생성 (트랜잭션 소유)"]
+        DOMAIN["domain/saju/<br/>만세력·명식 계산 (순수 함수)"]
+        REPO["repositories/<br/>readings · jobs · knowledge(pgvector)"]
+        WORKER["worker.py<br/>job 폴링 → ai.facade 호출"]
+
+        subgraph AI["ai/ — 외부는 facade만 호출"]
+            direction TB
+            FACADE["facade.py<br/>interpret() · ingest()"]
+            RETRIEVAL["retrieval.py<br/>질의 임베딩 → 유사 청크 검색"]
+            PROMPTS["prompts/<br/>프롬프트 템플릿"]
+            VALIDATION["validation.py<br/>LLM 출력 스키마 검증"]
+            PORTS["ports.py<br/>LlmProvider · EmbeddingProvider"]
+            PROVIDERS["providers/<br/>port 구현 (anthropic, openai …)"]
+        end
+    end
+
+    ROUTER --> SERVICE
+    SERVICE --> DOMAIN
+    SERVICE --> REPO
+    WORKER --> REPO
+    WORKER --> FACADE
+    FACADE --> RETRIEVAL
+    FACADE --> PROMPTS
+    FACADE --> VALIDATION
+    FACADE --> PORTS
+    RETRIEVAL --> PORTS
+    RETRIEVAL --> REPO
+    PROVIDERS -. implements .-> PORTS
 ```
 
 ## 흐름 1 — 사주 해석 요청 (비동기)
