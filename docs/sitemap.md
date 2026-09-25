@@ -17,11 +17,11 @@ flowchart LR
     Screens --> Pricing["3 가격·결제 /pricing<br/>묶음 선택 + Toss 결제 위젯"]
     Screens --> Login["4 로그인 /login"]
     Screens --> Report["5 보고서 /reports/:id<br/>생성 중 → 상세 · PDF"]
-    Screens --> Account["6 마이페이지 /account<br/>내 보고서 · 크레딧 · 설정"]
+    Screens --> Account["6 마이페이지 /my<br/>내 보고서 · 크레딧 · 설정"]
 
-    Legal --> Terms["/legal/terms"]
-    Legal --> Privacy["/legal/privacy"]
-    Legal --> Refund["/legal/refund"]
+    Legal --> Terms["이용약관 /terms"]
+    Legal --> Privacy["개인정보처리방침 /privacy"]
+    Legal --> Refund["환불 정책 /refund-policy"]
 
     Handlers --> Verify["/login/verify → 원래 화면"]
     Handlers --> PayOk["/checkout/success → 보고서 또는 이전 화면"]
@@ -43,10 +43,11 @@ flowchart LR
 | 3 | 가격·결제 | `/pricing` | 모두 (결제는 회원) | Free · 1 · 3 · 10★ · 100 선택 → 같은 화면에서 주문 요약 + Toss 결제 위젯 | PAY-008, PAY-010, PAY-012 |
 | 4 | 로그인 | `/login` | 비회원 | Google · Apple · 이메일 링크, 약관 동의, 16세 확인 | MEM-004, MEM-006, MEM-007 |
 | 5 | 보고서 | `/reports/:id` | 본인 | 생성 중 → 상세 보고서, PDF 다운로드 | AIU-003, AIU-005, PAY-020 |
-| 6 | 마이페이지 | `/account` | 회원 | 탭: 내 보고서 / 크레딧·구매 내역·환불 / 설정(언어·국가·마케팅 동의·데이터 내보내기·탈퇴) | MEM-008, PAY-021, PAY-040~045 |
-| — | 법적 고지 | `/legal/terms` · `/legal/privacy` · `/legal/refund` | 모두 | 정적 문서 | MEM-006, MEM-011, PAY-040~045 |
+| 6 | 마이페이지 | `/my` | 회원 | 탭: 내 보고서 / 크레딧·구매 내역·환불 / 설정(언어·국가·마케팅 동의·데이터 내보내기·탈퇴) | MEM-008, PAY-021, PAY-040~045 |
+| — | 법적 고지 | `/terms` · `/privacy` · `/refund-policy` | 모두 | 정적 문서 | MEM-006, MEM-011, PAY-040~045 |
 
-- 화면 이름: 한국어 "마이페이지", 영어 "My Account".
+- 화면 이름: 한국어 "마이페이지", 영어 "My Account". 경로는 두 언어 모두 `/my` (영어는 `/en/my`).
+- 법적 고지 경로는 글로벌 서비스에서 흔히 쓰는 짧은 이름을 쓴다: `/terms`, `/privacy`, `/refund-policy`.
 - 공통 요소: 언어 전환(ko ↔ en), 로그인·마이페이지, 크레딧 잔액(회원), 법적 고지 링크, 쿠키 동의 배너(EU).
 - 로그인이 필요한 화면에 비회원이 들어오면 `/login`으로 보내고, 가입 후 원래 화면으로 돌아온다.
 - 리딩 화면의 **"상세 보기"** 동작:
