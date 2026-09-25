@@ -1,0 +1,57 @@
+name: ${COMPOSE_PROJECT_NAME:-saju}
+
+services:
+  postgres:
+    image: postgres:18
+    container_name: ${COMPOSE_PROJECT_NAME:-saju}-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-saju}
+      POSTGRES_USER: ${DB_USERNAME:-app}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-app}
+    ports:
+      - "127.0.0.1:${DB_HOST_PORT:-5433}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    profiles: ["app"]
+    build:
+      context: ./be
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION:-3.14.7}
+    container_name: ${COMPOSE_PROJECT_NAME:-saju}-api
+    environment:
+      APP_ENVIRONMENT: ${APP_ENVIRONMENT:-local}
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: 8000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-saju}
+      DB_USERNAME: ${DB_USERNAME:-app}
+      DB_PASSWORD: ${DB_PASSWORD:-app}
+      CORS_ORIGINS: ${CORS_ORIGINS:-["http://localhost:3000"]}
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    profiles: ["app"]
+    build:
+      context: ./fe
+      args:
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8000}
+    container_name: ${COMPOSE_PROJECT_NAME:-saju}-web
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  postgres-data:

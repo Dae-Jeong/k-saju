@@ -1,0 +1,14 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# editor junk
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# local env (be/.env.example, fe/.env.example, .env.example stay tracked)
+.env
+.env.*.local
