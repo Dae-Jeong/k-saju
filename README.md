@@ -39,41 +39,35 @@ flowchart LR
 
 ## Environment variables
 
-```text
-                    ┌──────────────────────────────┐
-                    │ .env.example (git 커밋)       │  ← 변수 명세 (required/optional 주석)
-                    └──────────────┬───────────────┘
-                                   │ make env (최초 1회, 덮어쓰지 않음)
-                                   ▼
-┌──────────────────────── 로컬 ─────────────────────────────────────┐
-│                    ┌──────────────────────┐                        │
-│                    │ .env (gitignore)     │  ← 로컬 값의 유일한 원천 │
-│                    └───┬──────────────┬───┘                        │
-│        Makefile export │              │ compose --env-file .env     │
-│      (set -a; . .env)  │              │ environment: ${VAR:?}       │
-│                        ▼              ▼                            │
-│   ┌── 호스트 프로세스 ─────┐   ┌── 컨테이너 (make up) ────────┐    │
-│   │ make dev-be / migrate │   │ saju-api                     │    │
-│   │ make dev-fe / test    │   │ saju-web                     │    │
-│   └──────────┬───────────┘   └──────────────┬───────────────┘    │
-└──────────────┼──────────────────────────────┼────────────────────┘
-               │   둘 다 OS 환경변수로만 받음   │
-               ▼                              ▼
-        ┌───────────────────────────────────────────────┐
-        │ 앱 시작 시 검증                                 │
-        │  be: Settings() ─ pydantic, .env 파일 안 읽음   │
-        │  fe: env-config.ts ─ zod (빌드 + 서버 기동)     │
-        │  누락/형식 오류 → 누락 키 전부 출력 후 exit 1    │
-        └───────────────────────────────────────────────┘
-               ▲
-               │ 동일한 방식
-┌──────────────┴──────────── 배포 (OCI, 추후) ──────────────────────┐
-│  서버/컨테이너 런타임 환경변수 주입 · 비밀값은 Vault → 환경변수    │
-│  서버에 .env 파일을 두지 않음                                      │
-└──────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    Spec["<b>.env.example</b> (git 커밋)<br/>변수 명세 · required / optional"]
+    Env["<b>.env</b> (gitignore)<br/>로컬 값의 유일한 원천"]
+    Spec -->|"make env<br/>(최초 1회, 덮어쓰지 않음)"| Env
 
-fe 예외: NEXT_PUBLIC_* 는 빌드 시 JS 번들에 박힘 → docker build arg로 전달, 빌드 단계에서 검증
+    subgraph Local["로컬"]
+        direction LR
+        Host["호스트 프로세스<br/>make dev-be · dev-fe · migrate · test"]
+        Ctr["컨테이너 (make up)<br/>saju-api · saju-web"]
+    end
+
+    Env -->|"Makefile export<br/>set -a; . ./.env"| Host
+    Env -->|"compose --env-file .env<br/>environment: ${VAR:?}"| Ctr
+
+    subgraph Deploy["배포 (OCI, 추후)"]
+        Srv["서버 · 컨테이너 런타임 환경변수<br/>비밀값: Vault → 환경변수<br/>서버에 .env 파일 없음"]
+    end
+
+    Validate{"앱 시작 시 검증<br/>be: Settings() · pydantic<br/>fe: env-config.ts · zod"}
+    Host -->|"OS 환경변수"| Validate
+    Ctr -->|"OS 환경변수"| Validate
+    Srv -->|"OS 환경변수"| Validate
+
+    Validate -->|"통과"| Run["기동"]
+    Validate -->|"누락 · 형식 오류"| Fail["누락 키 전부 출력<br/>exit 1"]
 ```
+
+> fe 예외: `NEXT_PUBLIC_*`는 빌드 시 JS 번들에 박힌다 → docker build arg로 전달하고 빌드 단계에서 검증한다.
 
 - 변수 추가·변경은 `.env.example`에 먼저 적는다 (`# required` / `# optional (default: X)`).
 - 앱은 `.env`를 직접 읽지 않는다. 필수 값이 없으면 기동하지 않는다.
