@@ -2,6 +2,7 @@
 # A1 인스턴스를 자리가 날 때까지 재시도하며 만든다 ("Out of host capacity" 대응).
 # 사용: SUBNET_ID=ocid1.subnet... ./infra/oci/launch-a1.sh   (SSH 키 기본값 ~/.ssh/oci_server.pub)
 set -euo pipefail
+. "$(dirname "$0")/_lib.sh"
 : "${SUBNET_ID:?SUBNET_ID 필요 (network.sh 출력)}"
 SSH_PUBKEY=${SSH_PUBKEY:-$HOME/.ssh/oci_server.pub}
 OCPUS=${OCPUS:-2}; MEM=${MEM:-12}; BOOT_GB=${BOOT_GB:-100}; INTERVAL=${INTERVAL:-60}

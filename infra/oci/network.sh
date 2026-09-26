@@ -3,6 +3,7 @@
 # 이미 같은 이름이 있으면 새로 만들지 않고 그대로 쓴다.
 # 사용: MY_IP=1.2.3.4 ./infra/oci/network.sh
 set -euo pipefail
+. "$(dirname "$0")/_lib.sh"
 : "${MY_IP:?MY_IP (SSH 허용할 내 공인 IP) 필요}"
 NAME=${NAME:-app}
 TENANCY=$(awk -F= '/^tenancy/{print $2; exit}' ~/.oci/config | tr -d ' ')

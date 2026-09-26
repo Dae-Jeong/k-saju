@@ -2,6 +2,7 @@
 # Always Free A1을 받을 수 있는지 확인한다: 홈 리전, 가용 영역, A1 한도, A1 shape 제공 여부.
 # 사용: ./infra/oci/check.sh   (~/.oci/config 필요)
 set -euo pipefail
+. "$(dirname "$0")/_lib.sh"
 
 TENANCY=$(oci iam compartment list --query 'data[0]."compartment-id"' --raw-output 2>/dev/null || true)
 TENANCY=${TENANCY:-$(awk -F= '/^tenancy/{print $2; exit}' ~/.oci/config | tr -d ' ')}
