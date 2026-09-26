@@ -56,7 +56,7 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=22.13",
+    "node": ">=24",
     "pnpm": ">=11",
     "npm": "please-use-pnpm",
     "yarn": "please-use-pnpm"

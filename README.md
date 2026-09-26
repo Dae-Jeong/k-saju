@@ -32,7 +32,7 @@
 
 ## 시작하기
 
-필요한 도구: [Docker](https://www.docker.com/), [uv](https://docs.astral.sh/uv/) (Python 3.14는 uv가 설치), Node.js 22+, [pnpm](https://pnpm.io/) 11
+필요한 도구: [Docker](https://www.docker.com/), [uv](https://docs.astral.sh/uv/) (Python 3.14는 uv가 설치), Node.js 24+ (LTS), [pnpm](https://pnpm.io/) 11
 
 ```sh
 make env       # .env.example → .env (최초 1회)
