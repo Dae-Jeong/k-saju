@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist_Mono, Noto_Sans_KR } from 'next/font/google';
+import { Geist_Mono, Noto_Sans_KR, Noto_Serif_KR } from 'next/font/google';
 import { AppProviders } from './providers';
 import './globals.css';
 
@@ -11,21 +11,27 @@ const notoSansKr = Noto_Sans_KR({
   weight: ['400', '500', '600', '700'],
 });
 
+const notoSerifKr = Noto_Serif_KR({
+  variable: '--font-serif',
+  subsets: ['latin'],
+  weight: ['700', '900'],
+});
+
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: 'App',
-  description: 'Project scaffold',
+  title: 'Korean Saju · 여덟 글자로 읽는 나',
+  description: '태어난 순간의 네 기둥으로 타고난 성향과 흐름을 읽는 한국 사주.',
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="ko"
-      className={`${notoSansKr.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${notoSansKr.variable} ${notoSerifKr.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <AppProviders>{children}</AppProviders>
