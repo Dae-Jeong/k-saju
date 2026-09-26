@@ -9,8 +9,8 @@ const PILLARS = [
 
 export default function Welcome() {
   return (
-    <div className="flex flex-1 flex-col">
-      <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-4">
+    <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
+      <header className="flex w-full items-center justify-between px-6 py-4">
         <span className="font-serif text-lg font-black tracking-wide">
           SERVICE
         </span>
@@ -18,12 +18,12 @@ export default function Welcome() {
       </header>
       <HwiBand />
 
-      <main className="mx-auto grid w-full max-w-5xl flex-1 grid-cols-1 items-center gap-12 px-6 py-16 md:grid-cols-[1.2fr_1fr]">
+      <main className="flex w-full flex-1 flex-col gap-12 px-6 py-12">
         <section className="flex min-w-0 flex-col gap-5">
           <span className="text-muted-foreground text-xs tracking-[0.16em]">
             KOREAN SAJU · 사주
           </span>
-          <h1 className="font-serif text-4xl leading-tight font-black md:text-6xl">
+          <h1 className="font-serif text-4xl leading-tight font-black">
             여덟 글자로
             <br />
             읽는 나
@@ -78,7 +78,7 @@ export default function Welcome() {
       </main>
 
       <footer className="bg-secondary text-muted-foreground px-6 py-6 text-[11px] leading-relaxed">
-        <div className="mx-auto max-w-5xl">
+        <div>
           <div className="text-foreground font-bold">Service (가칭)</div>
           <div>Korean Saju · 곧 만나요.</div>
         </div>
