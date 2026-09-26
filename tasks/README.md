@@ -8,4 +8,4 @@
 
 | 작업 | 상태 | 결과 |
 | --- | --- | --- |
-| [Welcome 페이지](2026-09-26-welcome-page.md) | 검증 완료 | 세로 레이아웃·배경 분리 구현, origin 반영·배포 확인 예정 |
+| [Welcome 페이지](2026-09-26-welcome-page.md) | 완료 | 세로 레이아웃·배경 분리 구현, origin/main 반영·CI·Vercel 배포 확인 |
