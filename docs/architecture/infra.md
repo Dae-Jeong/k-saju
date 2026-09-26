@@ -12,23 +12,23 @@ Status: 제안 · 2026-09-25
 - be: 관리형 컨테이너 서비스 (VM·Kubernetes 아님)
 - DB: 관리형 PostgreSQL + pgvector. 컨테이너 안에 DB를 두지 않는다 (컨테이너 디스크는 휘발성)
 - 비용: 가능한 한 무료 한도 안에서 운영
-- 서비스명·도메인: 미정. 문서에서는 `{domain}`으로 표기한다
+- 도메인: fe `saju.marinkim.xyz` (Vercel), api `saju-api.marinkim.xyz` (OCI 서버 nginx). 서비스명은 미정
 
 ## 논리 구조
 
 ```mermaid
 flowchart TB
     User(["User"])
-    DNS["DNS · {domain}"]
+    DNS["DNS · marinkim.xyz (가비아)"]
 
     subgraph Vercel["Vercel"]
-        Web["web · Next.js (SSR)<br/>{domain}"]
+        Web["web · Next.js (SSR)<br/>saju.marinkim.xyz"]
     end
 
     subgraph Cloud["Cloud (prod)"]
         direction TB
         subgraph Run["관리형 컨테이너 서비스"]
-            Api["api · FastAPI<br/>api.{domain}<br/>HTTPS · 관리형 TLS"]
+            Api["api · FastAPI<br/>saju-api.marinkim.xyz<br/>HTTPS"]
             Worker["worker<br/>같은 be 이미지 · 다른 command<br/>외부 ingress 없음"]
         end
         Migrate["migrate job<br/>alembic upgrade head<br/>배포마다 1회"]
@@ -146,8 +146,8 @@ sequenceDiagram
 
 | 호스트 | 대상 |
 | --- | --- |
-| `{domain}` | Vercel (web) |
-| `api.{domain}` | 클라우드 api (관리형 TLS) |
+| `saju.marinkim.xyz` | Vercel (web) · 가비아 CNAME |
+| `saju-api.marinkim.xyz` | OCI 서버 nginx → api · 가비아 A 168.110.100.93 |
 
 ## 미정
 

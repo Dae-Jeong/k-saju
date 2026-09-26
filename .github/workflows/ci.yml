@@ -57,5 +57,5 @@ jobs:
       - name: Build
         working-directory: fe
         env:
-          NEXT_PUBLIC_API_BASE_URL: https://api.marinkim.xyz
+          NEXT_PUBLIC_API_BASE_URL: https://saju-api.marinkim.xyz
         run: pnpm build
