@@ -9,7 +9,7 @@ const PILLARS = [
 
 export default function Welcome() {
   return (
-    <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
+    <div className="bg-background mx-auto flex w-full max-w-md flex-1 flex-col shadow-sm">
       <header className="flex w-full items-center justify-between px-6 py-4">
         <span className="font-serif text-lg font-black tracking-wide">
           SERVICE

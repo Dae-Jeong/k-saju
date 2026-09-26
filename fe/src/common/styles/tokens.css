@@ -5,6 +5,7 @@
 
 :root {
   /* Brand A · 한지 + 먹 + 조선 단청 (docs/design/brand-a.html) */
+  --canvas: #e9e7e2;
   --hanji: #f6f1e7;
   --paper: #fbf8f2;
   --ink: #1f1d1a;
