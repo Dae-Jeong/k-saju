@@ -16,8 +16,8 @@
 | --- | --- |
 | `be/` | FastAPI 백엔드. 상세는 `be/README.md`, `be/AGENTS.md`(있다면) |
 | `fe/` | Next.js 프론트엔드. 상세는 `fe/README.md`, `fe/AGENTS.md` |
-| `infra/terraform/` | 배포 인프라 as code. 아직 비어 있음(후순위, 아래 참고) |
-| `infra/docker/compose.local.yaml` | 로컬 개발 전용 compose. 배포 인프라 아님 |
+| `infra/docker/` | 이 앱의 compose — `compose.local.yaml`(로컬 개발), `compose.prod.yaml`(운영 서버) |
+| `infra/scripts/` | 운영 배포·DB 백업 스크립트 (`make deploy-be`가 서버에서 실행) |
 | `docs/` | 정책·기획·기술 설계 문서. 진입점은 `docs/README.md` (결정은 `docs/policies/`가 소유) |
 | `tasks/` | 작업 기록 |
 | `Makefile`, `.env.example` | 루트 오케스트레이션 |
@@ -81,13 +81,13 @@ DB/앱 격리 규약은 글로벌 agent wiki의 로컬 개발 환경 규약을 �
 - `make migrate` — alembic 마이그레이션
 - `make up` / `make down` — `api`+`web`+`postgres` 전체를 컨테이너로 기동 (profile `app`) / `down`은 api·web만 내리고 postgres는 유지
 - `make lint` / `make test` / `make fmt` — be+fe 전체
-- `make deploy-be` — 운영 서버(OCI)에 be 배포: `deploy/compose.prod.yaml` (api·postgres, `edge` 네트워크). 서버 비밀값은 서버의 `deploy/.env.prod`에만 있다
+- `make deploy-be` — 운영 서버(OCI)에 be 배포: `infra/docker/compose.prod.yaml` (api·postgres, `edge` 네트워크). 서버 비밀값은 서버의 `infra/docker/.env.prod`에만 있다
 
 ## infra
 
 `infra/docker/compose.local.yaml`은 로컬 개발 전용이다 — 배포 인프라가 아니다.
-배포 인프라는 `infra/terraform/`이 소유하며, 아직 비어 있다. 운영 서버(OCI Always Free A1)와 리버스 프록시는
-이 레포 밖에서 관리한다.
+이 레포의 `infra/`는 **이 앱이 어떻게 뜨는가**(로컬·운영 compose, 배포·백업 스크립트)만 소유한다.
+운영 서버 자체(초기 세팅, 방화벽, nginx, 인증서, 도메인)는 private 레포 `Dae-Jeong/MarinInfra`가 소유한다.
 
 ## 프론트엔드 세부 규칙
 

@@ -51,8 +51,8 @@ make dev-fe    # 프론트엔드 http://localhost:3000 (다른 터미널에서)
 ├── be/                      # FastAPI 백엔드
 ├── fe/                      # Next.js 프론트엔드
 ├── infra/
-│   ├── docker/              # 로컬 개발용 compose
-│   └── terraform/           # 배포 인프라 (예정)
+│   ├── docker/              # compose (local · prod)
+│   └── scripts/             # 운영 배포 · DB 백업
 ├── docs/                    # 정책 · 기획 · 기술 설계
 ├── Makefile                 # 실행 · 검증 진입점
 └── .env.example             # 환경변수 명세

@@ -1,5 +1,5 @@
-# 운영 서버(OCI A1)용. 서버의 ~/k-saju 에서 deploy/deploy.sh 가 실행한다.
-# 값은 서버의 deploy/.env.prod (커밋 금지)에서 온다. 외부 노출은 nginx(edge 네트워크)만 한다.
+# 운영 서버(OCI A1)용. 서버의 ~/k-saju 에서 infra/scripts/deploy.sh 가 실행한다.
+# 값은 서버의 infra/docker/.env.prod (커밋 금지)에서 온다. 외부 노출은 nginx(edge 네트워크)만 한다.
 name: saju
 
 services:
@@ -23,7 +23,7 @@ services:
 
   api:
     build:
-      context: ../be
+      context: ../../be
       args:
         PYTHON_VERSION: ${PYTHON_VERSION:-3.14.7}
     image: saju-api:${GIT_SHA:-local}

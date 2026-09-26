@@ -118,7 +118,7 @@ sequenceDiagram
 ```
 
 - 클라우드 인증은 GitHub OIDC로 한다. 장기 액세스 키를 GitHub Secrets에 두지 않는다.
-- 인프라는 `infra/terraform/`에서 관리한다. Terraform state는 해당 클라우드의 원격 backend에 둔다.
+- 서버·nginx·인증서는 `Dae-Jeong/MarinInfra`(private)가, 앱의 운영 compose·배포 스크립트는 이 레포 `infra/`가 관리한다.
 
 ## 클라우드별 대응
 

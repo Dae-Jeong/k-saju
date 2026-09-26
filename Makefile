@@ -81,4 +81,4 @@ fmt-fe:
 PROD_SSH ?= ssh -i ~/.ssh/oci_server ubuntu@168.110.100.93
 
 deploy-be:
-	$(PROD_SSH) 'test -d ~/k-saju || git clone -q https://github.com/Dae-Jeong/k-saju.git ~/k-saju; ~/k-saju/deploy/deploy.sh'
+	$(PROD_SSH) 'test -d ~/k-saju || git clone -q https://github.com/Dae-Jeong/k-saju.git ~/k-saju; ~/k-saju/infra/scripts/deploy.sh'
