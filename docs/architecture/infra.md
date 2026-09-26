@@ -1,9 +1,54 @@
 # 배포 아키텍처 (클라우드 중립)
 
-Status: 제안 · 2026-09-25
+Status: 운영 중 (2026-09-26) · 아래 "현재 운영 구성"이 실제 상태다. 그 뒤의 논리 구조·클라우드별 대응은 초기 설계안으로 남겨 둔다.
 
 클라우드와 무관한 논리 구조를 먼저 정한다. 각 구성요소는 아래 대응표로 클라우드별 서비스에
 매핑한다. 이 규모에서는 클라우드마다 구조 차이가 거의 없다.
+
+## 현재 운영 구성
+
+```mermaid
+flowchart LR
+    User(["사용자"])
+    GH["GitHub · Dae-Jeong/k-saju"]
+    CI["GitHub Actions CI<br/>be lint·migrate·test · fe lint·build"]
+
+    subgraph Vercel["Vercel (Hobby)"]
+        Web["fe · Next.js<br/>saju.marinkim.xyz"]
+    end
+
+    subgraph OCI["OCI 춘천 · A1 2 OCPU / 12GB (Always Free)"]
+        Nginx["nginx + certbot<br/>saju-api.marinkim.xyz · HTTPS<br/>(MarinInfra 소유)"]
+        Api["saju-api · FastAPI :8000<br/>edge + internal 네트워크"]
+        Pg[("saju-postgres<br/>PostgreSQL 18 + pgvector<br/>internal 네트워크만")]
+        Backup["cron 03:30 백업<br/>14일 보관"]
+    end
+
+    User -->|"HTTPS"| Web
+    User -->|"HTTPS · API 호출 (CORS)"| Nginx
+    Nginx --> Api --> Pg
+    Backup -.-> Pg
+    GH --> CI
+    GH -->|"push → 자동 배포"| Web
+    GH -.->|"make deploy-be (pull · 서버 빌드)"| Api
+```
+
+| 항목 | 내용 |
+| --- | --- |
+| fe | Vercel 프로젝트 `k-saju` (Root `fe`, Node 24). `main` push 시 자동 배포. 환경변수는 `NEXT_PUBLIC_API_BASE_URL`만 |
+| be | OCI A1 서버. 앱 compose는 이 레포 `infra/docker/compose.prod.yaml`, 배포는 `make deploy-be` (서버에서 `git pull` 후 arm64 빌드·교체, 컨테이너 시작 시 마이그레이션) |
+| 서버·프록시 | 초기 세팅, 방화벽, nginx, 인증서, 도메인은 private 레포 `Dae-Jeong/MarinInfra`가 소유 |
+| DB | 같은 서버의 `saju-postgres` 컨테이너. 외부 노출 없음. 매일 03:30 `pg_dump` 백업 14일 보관 |
+| 비밀값 | 서버의 `infra/docker/.env.prod`(권한 600)에만. 레포·Vercel에 없음 |
+| DNS (가비아) | `saju` A → 76.76.21.21 (Vercel) · `saju-api` A → 168.110.100.93 (OCI) |
+| 비용 감시 | OCI 예산 `free-tier-guard` $1/월 알림 |
+
+### 후속 과제
+
+- be 자동 배포 (지금은 `make deploy-be` 수동)
+- 운영에서 API 문서(`/docs`) 노출 여부 결정
+- uvicorn이 nginx 전달 헤더(X-Forwarded-*)를 신뢰하도록 설정
+- Vercel Hobby는 비상업용 — 결제 시작 전에 Pro로 전환
 
 ## 전제
 

@@ -95,6 +95,15 @@ flowchart LR
 
 배포 구성은 [`docs/architecture/infra.md`](docs/architecture/infra.md), 환경변수 흐름은 [`docs/architecture/env.md`](docs/architecture/env.md)를 본다.
 
+## 배포
+
+| 대상 | 주소 | 방식 |
+| --- | --- | --- |
+| fe | https://saju.marinkim.xyz | Vercel, `main` push 시 자동 |
+| be | https://saju-api.marinkim.xyz | OCI 서버, `make deploy-be` |
+
+구성과 운영 방법은 [`docs/architecture/infra.md`](docs/architecture/infra.md)를 본다.
+
 ## 개발 명령
 
 ```sh
