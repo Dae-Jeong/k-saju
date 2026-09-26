@@ -81,6 +81,7 @@ DB/앱 격리 규약은 글로벌 agent wiki의 로컬 개발 환경 규약을 �
 - `make migrate` — alembic 마이그레이션
 - `make up` / `make down` — `api`+`web`+`postgres` 전체를 컨테이너로 기동 (profile `app`) / `down`은 api·web만 내리고 postgres는 유지
 - `make lint` / `make test` / `make fmt` — be+fe 전체
+- `make deploy-be` — 운영 서버(OCI)에 be 배포: `deploy/compose.prod.yaml` (api·postgres, `edge` 네트워크). 서버 비밀값은 서버의 `deploy/.env.prod`에만 있다
 
 ## infra
 

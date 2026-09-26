@@ -12,3 +12,5 @@ Thumbs.db
 # local env (be/.env.example, fe/.env.example, .env.example stay tracked)
 .env
 .env.*.local
+
+deploy/.env.prod

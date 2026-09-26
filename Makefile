@@ -1,4 +1,4 @@
-.PHONY: help env check-env db db-down dev-be dev-fe migrate up down lint test fmt \
+.PHONY: deploy-be help env check-env db db-down dev-be dev-fe migrate up down lint test fmt \
 	lint-be lint-fe test-be test-fe fmt-be fmt-fe
 
 COMPOSE := docker compose -f infra/docker/compose.local.yaml --project-directory . --env-file .env
@@ -20,6 +20,7 @@ help:
 	@echo "  lint      - lint be (ruff, ty) and fe (eslint, tsc)"
 	@echo "  test      - test be (pytest) and fe (none yet)"
 	@echo "  fmt       - format be (ruff format) and fe (prettier)"
+	@echo "  deploy-be - deploy be to the prod server (ssh, git pull, compose up)"
 
 env:
 	@if [ -f .env ]; then \
@@ -76,3 +77,8 @@ fmt-be:
 
 fmt-fe:
 	cd fe && pnpm format
+
+PROD_SSH ?= ssh -i ~/.ssh/oci_server ubuntu@168.110.100.93
+
+deploy-be:
+	$(PROD_SSH) 'test -d ~/k-saju || git clone -q https://github.com/Dae-Jeong/k-saju.git ~/k-saju; ~/k-saju/deploy/deploy.sh'
