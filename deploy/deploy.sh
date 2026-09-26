@@ -19,6 +19,9 @@ docker image prune -f >/dev/null
 
 # 매일 03:30 DB 백업 (없을 때만 등록)
 LINE="30 3 * * * $PWD/deploy/backup.sh >> $HOME/backups/backup.log 2>&1"
-( crontab -l 2>/dev/null | grep -F "deploy/backup.sh" >/dev/null ) || { mkdir -p "$HOME/backups"; ( crontab -l 2>/dev/null; echo "$LINE" ) | crontab -; }
+if ! { crontab -l 2>/dev/null || true; } | grep -qF "deploy/backup.sh"; then
+  mkdir -p "$HOME/backups"
+  { crontab -l 2>/dev/null || true; echo "$LINE"; } | crontab -
+fi
 docker compose --env-file "$ENV_FILE" -f deploy/compose.prod.yaml ps --format "{{.Name}} {{.Status}}"
 echo "deployed $GIT_SHA"
