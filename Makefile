@@ -1,4 +1,4 @@
-.PHONY: help env check-env db db-down dev-be dev-fe migrate up down lint test fmt \
+.PHONY: oci-check oci-network oci-launch help env check-env db db-down dev-be dev-fe migrate up down lint test fmt \
 	lint-be lint-fe test-be test-fe fmt-be fmt-fe
 
 COMPOSE := docker compose -f infra/docker/compose.local.yaml --project-directory . --env-file .env
@@ -20,6 +20,9 @@ help:
 	@echo "  lint      - lint be (ruff, ty) and fe (eslint, tsc)"
 	@echo "  test      - test be (pytest) and fe (none yet)"
 	@echo "  fmt       - format be (ruff format) and fe (prettier)"
+	@echo "  oci-check   - OCI home region, A1 limits and shape availability"
+	@echo "  oci-network - create free-tier OCI network (MY_IP=...)"
+	@echo "  oci-launch  - launch A1 instance, retrying until capacity (SUBNET_ID=...)"
 
 env:
 	@if [ -f .env ]; then \
@@ -76,3 +79,13 @@ fmt-be:
 
 fmt-fe:
 	cd fe && pnpm format
+
+oci-check:
+	./infra/oci/check.sh
+
+oci-network:
+	MY_IP=$(MY_IP) ./infra/oci/network.sh
+
+oci-launch:
+	SUBNET_ID=$(SUBNET_ID) ./infra/oci/launch-a1.sh
+

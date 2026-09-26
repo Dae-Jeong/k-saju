@@ -85,8 +85,8 @@ DB/앱 격리 규약은 글로벌 agent wiki의 로컬 개발 환경 규약을 �
 ## infra
 
 `infra/docker/compose.local.yaml`은 로컬 개발 전용이다 — 배포 인프라가 아니다.
-배포 인프라는 `infra/terraform/`이 소유하며, 아직 비어 있다. OCI(Oracle Cloud
-Infrastructure)를 배포 대상 후보로 검토 중이며, 실제 구성은 후순위 작업이다.
+배포 인프라는 `infra/terraform/`(예정)과 `infra/oci/`(OCI CLI 스크립트)가 소유한다. OCI Always Free
+A1 서버 1대에 compose로 올리는 방향을 검토 중이다 (`infra/oci/README.md`, `make oci-*`).
 
 ## 프론트엔드 세부 규칙
 
